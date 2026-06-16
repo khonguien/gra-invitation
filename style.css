@@ -1243,84 +1243,6 @@ body.content-revealed .scrap-speaker2 {
     animation: rotateDisc 3s linear infinite;
 }
 
-/* Spotify Playlist Panel */
-.spotify-player-panel {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 320px;
-    z-index: 99;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1.5px solid #2c2c2c;
-    border-radius: 16px;
-    padding: 24px 12px 12px 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(15px);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.spotify-player-panel.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.spotify-close-btn {
-    position: absolute;
-    top: 4px;
-    right: 8px;
-    background: transparent;
-    border: none;
-    font-size: 1.1rem;
-    color: #888888;
-    cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-}
-
-.spotify-close-btn:hover {
-    color: #ef4444;
-    transform: scale(1.1);
-}
-
-.spotify-open-app-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.spotify-open-app-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #2c2c2c;
-    text-decoration: none;
-    border: 1.5px solid #2c2c2c;
-    border-radius: 20px;
-    padding: 6px 14px;
-    background: #ffffff;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-}
-
-.spotify-open-app-btn:hover {
-    background: #2c2c2c;
-    color: #ffffff;
-    transform: translateY(-1px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
-}
-
 @keyframes rotateDisc {
     from {
         transform: rotate(0deg);
@@ -1776,13 +1698,6 @@ body.content-revealed .scrap-speaker2 {
         /* Hide tooltip on small mobile touchscreens */
     }
 
-    .spotify-player-panel {
-        bottom: 75px;
-        right: 15px;
-        left: 15px;
-        width: auto;
-        padding: 24px 10px 10px 10px;
-    }
 
     .timeline-container {
         margin-left: 5px;

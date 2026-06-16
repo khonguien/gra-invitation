@@ -1,5 +1,22 @@
 let isVietnamese = true;
 
+// HTML5 Background Music Player & Playlist configuration
+const playlist = [
+    'https://archive.org/download/78_2283-Dream-a-little-dream-of-me/2283-Dream-a-little-dream-of-me.mp3'
+];
+let currentTrackIndex = 0;
+const bgMusic = new Audio(playlist[currentTrackIndex]);
+bgMusic.loop = playlist.length === 1;
+
+// Cycle playlist if there are multiple tracks
+bgMusic.addEventListener('ended', () => {
+    if (playlist.length > 1) {
+        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+        bgMusic.src = playlist[currentTrackIndex];
+        playMusic();
+    }
+});
+
 const langBtn = document.getElementById('lang-btn');
 const elementsToTranslate = document.querySelectorAll('[data-vi]');
 
@@ -28,12 +45,11 @@ langBtn.addEventListener('click', () => {
 
     // Translate music tooltips
     const musicTooltip = document.querySelector('.music-tooltip');
-    const spotifyPanel = document.getElementById('spotify-player-panel');
-    if (musicTooltip && spotifyPanel) {
-        if (spotifyPanel.classList.contains('show')) {
-            musicTooltip.textContent = isVietnamese ? 'Đóng Playlist ⏸️' : 'Close Playlist ⏸️';
+    if (musicTooltip) {
+        if (bgMusic && !bgMusic.paused) {
+            musicTooltip.textContent = isVietnamese ? 'Tạm dừng nhạc ⏸️' : 'Pause Music ⏸️';
         } else {
-            musicTooltip.textContent = isVietnamese ? 'Mở Playlist 🎵' : 'Open Playlist 🎵';
+            musicTooltip.textContent = isVietnamese ? 'Phát nhạc 🎵' : 'Play Music 🎵';
         }
     }
 
@@ -71,10 +87,8 @@ function revealContent(e) {
         backToggle.classList.add('visible');
         contentRevealed = true;
 
-        // Trigger autoplay on Spotify when content is revealed (first user gesture)
-        if (spotifyController) {
-            spotifyController.play();
-        }
+        // Trigger autoplay on HTML5 Audio when content is revealed (first user gesture)
+        playMusic();
  
         // Trigger celebratory confetti burst on invitation reveal!
         setTimeout(() => {
@@ -267,89 +281,46 @@ END:VCALENDAR`;
     });
 }
 
-// Spotify Playlist drawer control
-let spotifyController = null;
+// HTML5 Background Music Player controls
 const musicBtn = document.getElementById('music-btn');
-const spotifyPanel = document.getElementById('spotify-player-panel');
-const spotifyCloseBtn = document.getElementById('spotify-close-btn');
 const musicTooltip = document.querySelector('.music-tooltip');
 
-window.onSpotifyIframeApiReady = (IFrameAPI) => {
-    const element = document.getElementById('spotify-iframe-container');
-    if (!element) return;
-
-    const options = {
-        uri: 'spotify:playlist:2v5WP8bBF2LqC867gzeIxw',
-        width: '100%',
-        height: '152'
-    };
-
-    IFrameAPI.createController(element, options, (EmbedController) => {
-        spotifyController = EmbedController;
-
-        // Sync vinyl rotating disc rotation with actual Spotify playback state
-        EmbedController.addListener('playback_update', (e) => {
-            const { isPaused } = e.data;
-            if (isPaused) {
-                musicBtn.classList.remove('playing');
-            } else {
-                musicBtn.classList.add('playing');
-            }
-        });
+function playMusic() {
+    if (!bgMusic) return;
+    bgMusic.play().then(() => {
+        if (musicBtn) {
+            musicBtn.classList.add('playing', 'active');
+            musicBtn.setAttribute('title', isVietnamese ? 'Tạm dừng' : 'Pause');
+        }
+        if (musicTooltip) {
+            musicTooltip.textContent = isVietnamese ? 'Tạm dừng nhạc ⏸️' : 'Pause Music ⏸️';
+        }
+    }).catch(err => {
+        console.log("Audio playback blocked or failed:", err);
     });
-};
+}
 
-if (musicBtn && spotifyPanel) {
-    function openSpotifyPanel() {
-        spotifyPanel.classList.add('show');
-        musicBtn.classList.add('active');
-        musicBtn.setAttribute('title', isVietnamese ? 'Đóng Playlist' : 'Close Playlist');
-        if (musicTooltip) {
-            musicTooltip.textContent = isVietnamese ? 'Đóng Playlist ⏸️' : 'Close Playlist ⏸️';
-        }
+function pauseMusic() {
+    if (!bgMusic) return;
+    bgMusic.pause();
+    if (musicBtn) {
+        musicBtn.classList.remove('playing', 'active');
+        musicBtn.setAttribute('title', isVietnamese ? 'Phát nhạc' : 'Play Music');
     }
-
-    function closeSpotifyPanel() {
-        spotifyPanel.classList.remove('show');
-        musicBtn.classList.remove('active');
-        musicBtn.setAttribute('title', isVietnamese ? 'Mở Playlist' : 'Open Playlist');
-        if (musicTooltip) {
-            musicTooltip.textContent = isVietnamese ? 'Mở Playlist 🎵' : 'Open Playlist 🎵';
-        }
+    if (musicTooltip) {
+        musicTooltip.textContent = isVietnamese ? 'Phát nhạc 🎵' : 'Play Music 🎵';
     }
+}
 
+if (musicBtn) {
     musicBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        if (spotifyPanel.classList.contains('show')) {
-            closeSpotifyPanel();
-            if (spotifyController) {
-                spotifyController.pause();
-            }
+        if (bgMusic.paused) {
+            playMusic();
         } else {
-            openSpotifyPanel();
-            if (spotifyController) {
-                spotifyController.play();
-            }
-        }
-    });
-
-    if (spotifyCloseBtn) {
-        spotifyCloseBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            closeSpotifyPanel();
-            if (spotifyController) {
-                spotifyController.pause();
-            }
-        });
-    }
-
-    // Close panel when clicking outside (music keeps playing)
-    document.addEventListener('click', (e) => {
-        if (spotifyPanel.classList.contains('show') && !spotifyPanel.contains(e.target) && e.target !== musicBtn && !musicBtn.contains(e.target)) {
-            closeSpotifyPanel();
+            pauseMusic();
         }
     });
 }
