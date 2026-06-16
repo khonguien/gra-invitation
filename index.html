@@ -4,36 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Graduation Invitation | Nguyễn Hoàng Khôi Nguyên</title>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0f172a',
+                        gold: '#d97706',
+                        goldlight: '#fBBF24',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Language Toggle -->
     <div class="lang-toggle">
         <button id="lang-btn">EN</button>
     </div>
+
+    <!-- Music Player Toggle -->
+    <div class="music-toggle-container">
+        <button id="music-btn" class="music-btn" title="Play Music">
+            <i class="fa-solid fa-compact-disc"></i>
+        </button>
+        <span class="music-tooltip" data-vi="Bật nhạc 🎵" data-en="Play Music 🎵">Bật nhạc 🎵</span>
+        <audio id="bg-music" loop src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3"></audio>
+    </div>
+
+    <!-- Back Toggle -->
     <div class="back-toggle">
         <button id="back-btn" data-vi="Quay Lại" data-en="Back">Quay Lại</button>
     </div>
-    <section class="hero-scrapbook fade-in">
-        
-        <!-- <div class="hero-top-text"> -->
-            <!-- <p data-vi="Tôi đã tốt nghiệp! Sẽ thật ý nghĩa nếu có bạn ở đó chung vui cùng tôi!" data-en="I have graduated! It would mean so much to have you there to celebrate with me!">Tôi đã tốt nghiệp! Sẽ thật ý nghĩa nếu có bạn ở đó chung vui cùng tôi!</p> -->
-        <!-- </div> -->
 
+    <!-- Hero Section -->
+    <section class="hero-scrapbook fade-in">
         <div class="hero-center-space"></div>
 
         <div class="scrap-letters-container">
-            <img src="https://i.pinimg.com/originals/a3/d2/6f/a3d26ffb1df8c6a8ef6e9085506b4e1e.png" class="scrap G">
-            <img src="https://i.pinimg.com/originals/2a/76/2c/2a762ce23a73b2540eb6ace550ffbfb6.png" class="scrap R">
-            <!-- <img src="https://i.pinimg.com/originals/28/88/f3/2888f33a48c53af87390473f52cb32e9.png" class="scrap T"> -->
-            <img src="https://i.pinimg.com/originals/cd/ed/a5/cdeda52357137f8b9560bb42836341c7.png" class="scrap A">
-            <img src="https://i.pinimg.com/originals/eb/44/aa/eb44aace865e920946bea36eef82c4d6.png" class="scrap D">
-            <img src="https://i.pinimg.com/originals/b7/a0/5b/b7a05b9a58ba437d741e97cc674c7218.png" class="scrap U">
-            <img src="https://i.pinimg.com/originals/cd/ed/a5/cdeda52357137f8b9560bb42836341c7.png" class="scrap A2">
-            <img src="https://i.pinimg.com/originals/28/88/f3/2888f33a48c53af87390473f52cb32e9.png" class="scrap T">
-            <img src="https://i.pinimg.com/originals/9e/20/85/9e208534bea028f79b5d48fa5e59ef62.png" class="scrap I">
-            <img src="https://i.pinimg.com/originals/5d/e6/10/5de610fbfa7387a1b738a16087b668a1.png" class="scrap O">
-            <img src="https://i.pinimg.com/originals/68/13/e8/6813e8365cf910cf86974ccf42157b51.png" class="scrap N">
+            <img src="https://i.pinimg.com/originals/a3/d2/6f/a3d26ffb1df8c6a8ef6e9085506b4e1e.png" class="scrap G" alt="G">
+            <img src="https://i.pinimg.com/originals/2a/76/2c/2a762ce23a73b2540eb6ace550ffbfb6.png" class="scrap R" alt="R">
+            <img src="https://i.pinimg.com/originals/cd/ed/a5/cdeda52357137f8b9560bb42836341c7.png" class="scrap A" alt="A">
+            <img src="https://i.pinimg.com/originals/eb/44/aa/eb44aace865e920946bea36eef82c4d6.png" class="scrap D" alt="D">
+            <img src="https://i.pinimg.com/originals/b7/a0/5b/b7a05b9a58ba437d741e97cc674c7218.png" class="scrap U" alt="U">
+            <img src="https://i.pinimg.com/originals/cd/ed/a5/cdeda52357137f8b9560bb42836341c7.png" class="scrap A2" alt="A">
+            <img src="https://i.pinimg.com/originals/28/88/f3/2888f33a48c53af87390473f52cb32e9.png" class="scrap T" alt="T">
+            <img src="https://i.pinimg.com/originals/9e/20/85/9e208534bea028f79b5d48fa5e59ef62.png" class="scrap I" alt="I">
+            <img src="https://i.pinimg.com/originals/5d/e6/10/5de610fbfa7387a1b738a16087b668a1.png" class="scrap O" alt="O">
+            <img src="https://i.pinimg.com/originals/68/13/e8/6813e8365cf910cf86974ccf42157b51.png" class="scrap N" alt="N">
 
             <!-- CEREMONY scrapbook characters -->
             <img src="https://i.pinimg.com/originals/68/9f/4c/689f4c88d4fff1a02c7c1ec3da30f60b.png" class="scrap C" alt="C">
@@ -46,18 +79,39 @@
             <img src="https://i.pinimg.com/originals/16/b2/e8/16b2e8c0f9c7e60646a8478ee229f515.png" class="scrap Y" alt="Y">
         </div>
         
-        <!-- Additional scrapbook characters (add your image links in the src below) -->
+        <!-- Additional scrapbook graphics -->
         <img src="https://i.pinimg.com/originals/98/91/c3/9891c318e27a34c3dc3a1f8ec041e581.png" class="scrap scrap-hand" alt="Hand">
-        <!-- <img src="https://i.pinimg.com/originals/3d/07/d4/3d07d4ff7ee681732f80c8fc06333743.png" class="scrap scrap-speaker" alt="speaker"> -->
-        <img src="https://i.pinimg.com/originals/21/40/7e/21407e519d913ffe4b6cebc194642776.png" class="scrap scrap-pin" alt="pin">
-        <img src="https://i.pinimg.com/originals/29/99/66/299966a05c509fccdb24996d4af7a379.png" class="scrap scrap-speaker2" alt="speker2">
+        <img src="https://i.pinimg.com/originals/21/40/7e/21407e519d913ffe4b6cebc194642776.png" class="scrap scrap-pin" alt="Pin">
+        <img src="https://i.pinimg.com/originals/29/99/66/299966a05c509fccdb24996d4af7a379.png" class="scrap scrap-speaker2" alt="Speaker">
 
         <div class="hero-bottom-text">
-            <!-- <h1 class="name">Nguyễn Hoàng Khôi Nguyên</h1> -->
-            <!-- <p class="degree" data-vi="Cử nhân ngành Công nghệ Kỹ thuật Cơ khí" data-en="Bachelor of Mechanical Engineering Technology">Cử nhân ngành Công nghệ Kỹ thuật Cơ khí</p> -->
-            <p class="hero-date">19 . 07 . 2025</p>
+            <p class="hero-date">09 . 11 . 2026</p>
             <p class="hero-time">18:00</p>
-            <p class="hero-location" data-vi="Học mãi cũng ra trường rồi" data-en="Finnaly be able to graduate">Học mãi cũng ra trường rồi</p>
+            <p class="hero-location" data-vi="Học mãi cũng ra trường rồi" data-en="Finally graduated!">Học mãi cũng ra trường rồi</p>
+            
+            <!-- Countdown Utility -->
+            <div class="flex justify-center gap-4 md:gap-8 my-6 fade-in">
+                <div class="flex flex-col">
+                    <div class="w-16 h-16 bg-white/30 backdrop-blur-md rounded-lg flex items-center justify-center text-navy text-2xl font-bold" id="cd-days">00</div>
+                    <span class="text-gray-800 text-xs mt-2 uppercase font-bold text-center" data-vi="Ngày" data-en="Days">Ngày</span>
+                </div>
+                <div class="flex flex-col">
+                    <div class="w-16 h-16 bg-white/30 backdrop-blur-md rounded-lg flex items-center justify-center text-navy text-2xl font-bold" id="cd-hours">00</div>
+                    <span class="text-gray-800 text-xs mt-2 uppercase font-bold text-center" data-vi="Giờ" data-en="Hours">Giờ</span>
+                </div>
+                <div class="flex flex-col">
+                    <div class="w-16 h-16 bg-white/30 backdrop-blur-md rounded-lg flex items-center justify-center text-gold text-2xl font-bold" id="cd-seconds">00</div>
+                    <span class="text-gold text-xs mt-2 uppercase tracking-widest font-bold text-center" data-vi="Giây" data-en="Secs">Giây</span>
+                </div>
+            </div>
+
+            <!-- Celebrate Button -->
+            <button id="celebrate-btn" class="celebrate-btn flex items-center gap-2 mb-6" data-vi="Bắn pháo hoa 🎉" data-en="Celebrate 🎉">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>Bắn pháo hoa 🎉</span>
+            </button>
+
+            <!-- Hero Invite -->
             <div class="hero-invite">
                 <div class="invite-top">
                     <span data-vi="kính mời" data-en="sincerely invite">kính mời</span>
@@ -65,63 +119,353 @@
                 </div>
                 <span data-vi="tới lễ tốt nghiệp của Khôi Nguyên" data-en="to Khôi Nguyên's graduation ceremony">tới lễ tốt nghiệp của Khôi Nguyên</span>
             </div>
+            
+            <!-- Click anywhere indicator -->
+            <div class="tap-reveal-hint mt-8 animate-pulse text-sm text-gray-500 font-medium" data-vi="👉 Chạm bất kỳ đâu trên màn hình để mở thiệp 👈" data-en="👉 Tap anywhere on screen to open the card 👈">
+                👉 Chạm bất kỳ đâu trên màn hình để mở thiệp 👈
             </div>
         </div>
     </section>
 
+    <!-- Hidden Content (revealed on interaction) -->
     <div id="hidden-content">
-    <section class="details fade-in">
-        <div class="card">
-            <h2 data-vi="Địa điểm" data-en="Location">Địa điểm</h2>
-            <p><strong><span data-vi="Thời gian:" data-en="Time:">Thời gian:</span></strong> [HH:MM, DD/MM/YYYY]</p>
-            <p><strong><span data-vi="Địa điểm:" data-en="Location:">Địa điểm:</span></strong> [Hội trường ABC, Đại học Công nghiệp TP.HCM]</p>
-            <div class="map-container" style="margin-top: 25px;">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.924296489379!2d106.68533151526054!3d10.824744461400268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528e5496d03cf%3A0xa5b8e7395ec636b9!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2hp4buHcCBUUC5IQ00!5e0!3m2!1svi!2s!4v1684300000000!5m2!1svi!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- Details & Timeline Section -->
+        <section class="details fade-in">
+            <!-- Location Card -->
+            <div class="card relative">
+                <h2 data-vi="Thời Gian & Địa Điểm" data-en="Time & Location">Thời Gian & Địa Điểm</h2>
+                <p><strong><span data-vi="Thời gian:" data-en="Time:">Thời gian:</span></strong> 18:00 - 09/11/2026</p>
+                <p><strong><span data-vi="Địa điểm:" data-en="Location:">Địa điểm:</span></strong> Hội trường E4, Trường Đại học Công nghiệp TP.HCM</p>
+                <p class="text-gray-500 text-sm mt-1">12 Nguyễn Văn Bảo, Phường 4, Gò Vấp, TP. Hồ Chí Minh</p>
+                
+                <!-- Action Controls -->
+                <div class="card-actions flex flex-wrap gap-3 mt-6 justify-center md:justify-start">
+                    <button id="copy-addr-btn" class="action-mini-btn" data-vi="Sao chép Địa chỉ" data-en="Copy Address">
+                        <i class="fa-regular fa-copy mr-2"></i><span>Sao chép Địa chỉ</span>
+                    </button>
+                    <button id="cal-sync-btn" class="action-mini-btn" data-vi="Thêm vào Lịch" data-en="Add to Calendar">
+                        <i class="fa-regular fa-calendar-plus mr-2"></i><span>Thêm vào Lịch</span>
+                    </button>
+                    <a href="https://maps.app.goo.gl/B9P6V1T7uJpZ5mR29" target="_blank" class="action-mini-btn inline-flex items-center" data-vi="Chỉ đường" data-en="Get Directions">
+                        <i class="fa-solid fa-map-location-dot mr-2"></i><span>Chỉ đường</span>
+                    </a>
+                </div>
+
+                <!-- Google Map Iframe -->
+                <div class="map-container mt-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.924296489379!2d106.68533151526054!3d10.824744461400268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528e5496d03cf%3A0xa5b8e7395ec636b9!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2hp4buHcCBUUC5IQ00!5e0!3m2!1svi!2s!4v1684300000000!5m2!1svi!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <!-- Map Polaroid Guidance -->
+                <div class="mt-8">
+                    <div class="polaroid-wrapper relative group lightbox-trigger" data-image="Gặp-mình-ở-đây.jpg" data-caption="Sơ đồ di chuyển thực tế">
+                        <div class="absolute -inset-2 bg-gold/10 rounded-2xl blur-md group-hover:blur-lg transition duration-500"></div>
+                        <div class="relative bg-white p-4 pb-12 shadow-xl border border-gray-100 rotate-[1deg] group-hover:rotate-0 transition duration-500 cursor-zoom-in">
+                            <img src="Gặp-mình-ở-đây.jpg" alt="Bản đồ vị trí" class="w-full object-cover rounded-sm">
+                            <p class="polaroid-caption font-serif italic mt-4 text-center text-gray-700" data-vi="📌 Bản đồ phác thảo vị trí" data-en="📌 Sketch Map of the Location">📌 Bản đồ phác thảo vị trí</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <h2>
-                <span data-vi="Xác Nhận Tham Dự -" data-en="RSVP -">Xác Nhận Tham Dự -</span>
-                <span class="guest-name" data-vi="Cục cưng" data-en="Sweetheart">Cục cưng</span>
-            </h2>
-            <p>
-                <strong class="guest-name" data-vi="Cục cưng" data-en="Sweetheart">Cục cưng</strong> 
-                <span data-vi="có đến hay không, nói mình biết với nhé." data-en="please confirm your attendance so we can best prepare for your arrival.">có đến hay không, nói mình biết với nhé.</span>
+
+            <!-- RSVP Card -->
+            <div class="card relative">
+                <h2>
+                    <span data-vi="Xác Nhận Tham Dự" data-en="Confirm Attendance">Xác Nhận Tham Dự</span>
+                </h2>
+                <p class="mb-4">
+                    <span data-vi="Chào" data-en="Hello">Chào</span>
+                    <strong class="guest-name" data-vi="cục cưng" data-en="sweetheart">cục cưng</strong>!
+                </p>
+                <p class="mb-8" data-vi="Để mình chuẩn bị đón tiếp chu đáo nhất, bạn xác nhận tham dự lễ tốt nghiệp của mình trước nha." data-en="To help me prepare the best welcome, please confirm your attendance at my graduation ceremony beforehand.">
+                    Để mình chuẩn bị đón tiếp chu đáo nhất, bạn xác nhận tham dự lễ tốt nghiệp của mình trước nha.
+                </p>
+                <a href="#" id="rsvp-btn" class="action-btn !w-full md:!w-auto md:px-12 py-4 shadow-md text-center" data-vi="Xác Nhận Ngay" data-en="RSVP Now">Xác Nhận Ngay</a>
+                
+                <!-- Polaroid Decoration -->
+                <div class="mt-12">
+                    <div class="polaroid-wrapper relative group lightbox-trigger" data-image="uel_2811162143.jpg" data-caption="Đón bạn tại sảnh chính nhé!">
+                        <div class="absolute -inset-2 bg-gold/10 rounded-2xl blur-md group-hover:blur-lg transition duration-500"></div>
+                        <div class="relative bg-white p-4 pb-12 shadow-xl border border-gray-100 rotate-[-1.5deg] group-hover:rotate-0 transition duration-500 cursor-zoom-in">
+                            <img src="uel_2811162143.jpg" alt="Check-in tốt nghiệp" class="w-full object-cover rounded-sm">
+                            <p class="polaroid-caption font-serif italic mt-4 text-center text-gray-700" data-vi="🎓 Nơi check-in chính của tụi mình" data-en="🎓 Where we will take graduation photos">🎓 Nơi check-in chính của tụi mình</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline & Dress Code Section -->
+        <section class="details fade-in mt-12">
+            <!-- Timeline Card -->
+            <div class="card relative">
+                <h2 data-vi="Lịch Trình Sự Kiện" data-en="Ceremony Agenda">Lịch Trình Sự Kiện</h2>
+                <div class="timeline-container mt-6 relative pl-6 border-l-2 border-dashed border-gray-300">
+                    <!-- Event 1 -->
+                    <div class="timeline-item mb-8 relative">
+                        <div class="timeline-dot bg-gold"></div>
+                        <div class="timeline-content text-left">
+                            <span class="timeline-time font-bold text-gold text-sm block">17:30</span>
+                            <h4 class="timeline-title font-bold text-navy text-lg" data-vi="Đón khách & Check-in" data-en="Welcoming Guests">Đón khách & Check-in</h4>
+                            <p class="text-gray-500 text-sm mt-1" data-vi="Đón tiếp bạn bè và cùng lưu lại các bức ảnh kỷ niệm đầu tiên ngoài sảnh." data-en="Welcome friends and take the first souvenir snapshots outside the lobby.">Đón tiếp bạn bè và cùng lưu lại các bức ảnh kỷ niệm đầu tiên ngoài sảnh.</p>
+                        </div>
+                    </div>
+                    <!-- Event 2 -->
+                    <div class="timeline-item mb-8 relative">
+                        <div class="timeline-dot bg-navy"></div>
+                        <div class="timeline-content text-left">
+                            <span class="timeline-time font-bold text-navy text-sm block">18:00</span>
+                            <h4 class="timeline-title font-bold text-navy text-lg" data-vi="Nghi Thức Lễ Tốt Nghiệp" data-en="Graduation Ceremony">Nghi Thức Lễ Tốt Nghiệp</h4>
+                            <p class="text-gray-500 text-sm mt-1" data-vi="Tiến hành vinh danh trang trọng và nhận bằng Cử nhân tại sân khấu chính." data-en="Formal celebration ceremony and receiving the degree on the main stage.">Tiến hành vinh danh trang trọng và nhận bằng Cử nhân tại sân khấu chính.</p>
+                        </div>
+                    </div>
+                    <!-- Event 3 -->
+                    <div class="timeline-item mb-8 relative">
+                        <div class="timeline-dot bg-gold"></div>
+                        <div class="timeline-content text-left">
+                            <span class="timeline-time font-bold text-gold text-sm block">19:30</span>
+                            <h4 class="timeline-title font-bold text-navy text-lg" data-vi="Chụp ảnh tự do" data-en="Photo Session">Chụp ảnh tự do</h4>
+                            <p class="text-gray-500 text-sm mt-1" data-vi="Chụp hình tự do cùng gia đình, bạn bè và thầy cô tại khuôn viên trường." data-en="Open photo session with family, friends, and professors in the campus.">Chụp hình tự do cùng gia đình, bạn bè và thầy cô tại khuôn viên trường.</p>
+                        </div>
+                    </div>
+                    <!-- Event 4 -->
+                    <div class="timeline-item relative">
+                        <div class="timeline-dot bg-navy"></div>
+                        <div class="timeline-content text-left">
+                            <span class="timeline-time font-bold text-navy text-sm block">20:30</span>
+                            <h4 class="timeline-title font-bold text-navy text-lg" data-vi="Liên hoan chúc mừng" data-en="Celebration Dinner">Liên hoan chúc mừng</h4>
+                            <p class="text-gray-500 text-sm mt-1" data-vi="Bữa tiệc tối nhỏ ấm cúng tri ân mọi người đồng hành cùng Nguyên suốt chặng đường." data-en="A small cozy dinner to thank everyone who accompanied Nguyên along this journey.">Bữa tiệc tối nhỏ ấm cúng tri ân mọi người đồng hành cùng Nguyên suốt chặng đường.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dresscode Card -->
+            <div class="card relative">
+                <h2 data-vi="Dresscode Gợi Ý" data-en="Suggested Dresscode">Dresscode Gợi Ý</h2>
+                <p class="mb-8 text-center text-gray-600" data-vi="Để có những khung hình kỷ niệm hài hòa và đồng điệu nhất, mời bạn chọn trang phục theo tone màu gợi ý sau nha:" data-en="To capture the most beautiful and synchronized photographs, we invite you to dress in the following color scheme:">Để có những khung hình kỷ niệm hài hòa và đồng điệu nhất, mời bạn chọn trang phục theo tone màu gợi ý sau nha:</p>
+                
+                <div class="flex justify-center gap-6 mb-8">
+                    <!-- Color 1 -->
+                    <div class="dresscode-swatch group text-center cursor-help">
+                        <div class="w-16 h-16 rounded-full bg-white border-2 border-gray-300 shadow-md transform hover:scale-110 transition duration-300 mx-auto"></div>
+                        <span class="block text-sm font-semibold mt-2" data-vi="Trắng" data-en="White">Trắng</span>
+                        <span class="text-xs text-gray-500 block" data-vi="Thanh lịch" data-en="Elegant">Thanh lịch</span>
+                    </div>
+                    <!-- Color 2 -->
+                    <div class="dresscode-swatch group text-center cursor-help">
+                        <div class="w-16 h-16 rounded-full bg-navy shadow-md transform hover:scale-110 transition duration-300 mx-auto"></div>
+                        <span class="block text-sm font-semibold mt-2" data-vi="Xanh Navy" data-en="Navy Blue">Xanh Navy</span>
+                        <span class="text-xs text-gray-500 block" data-vi="Trang nhã" data-en="Classic">Trang nhã</span>
+                    </div>
+                    <!-- Color 3 -->
+                    <div class="dresscode-swatch group text-center cursor-help">
+                        <div class="w-16 h-16 rounded-full bg-[#e2d1b7] border border-gray-200 shadow-md transform hover:scale-110 transition duration-300 mx-auto"></div>
+                        <span class="block text-sm font-semibold mt-2" data-vi="Be / Vàng cát" data-en="Beige / Sand">Be / Vàng cát</span>
+                        <span class="text-xs text-gray-500 block" data-vi="Nhẹ nhàng" data-en="Soft Tone">Nhẹ nhàng</span>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50/60 p-4 border border-dashed border-gold/30 rounded-lg text-left">
+                    <p class="text-xs font-semibold uppercase text-gold tracking-wider" data-vi="💡 Lưu ý nhỏ:" data-en="💡 Gentle Note:">💡 Lưu ý nhỏ:</p>
+                    <p class="text-xs text-gray-600 mt-1 leading-relaxed" data-vi="Bạn có thể tự do kết hợp trang phục theo sở thích để thoải mái di chuyển và chụp hình nhất nè." data-en="Feel free to wear any style you feel comfortable in to move and take photos around the campus.">Bạn có thể tự do kết hợp trang phục theo sở thích để thoải mái di chuyển và chụp hình nhất nè.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-world Transportation Steps -->
+        <section class="transport-guidance fade-in mt-12 max-w-[900px] mx-auto px-5">
+            <div class="card !block">
+                <h3 class="font-serif text-3xl text-center text-navy font-bold mb-12 italic tracking-wide" data-vi="Hướng dẫn di chuyển thực tế" data-en="Real-world navigation guide">Hướng dẫn di chuyển thực tế</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="flex flex-col items-center text-center group lightbox-trigger cursor-zoom-in" data-image="480445767_634475715609335_4096110617007142693_n.jpg" data-caption="Cổng chính: Gửi xe tại nhà xe cổng chính">
+                        <div class="relative w-full aspect-video mb-6 overflow-hidden rounded-2xl shadow-lg bg-white p-2">
+                            <img src="480445767_634475715609335_4096110617007142693_n.jpg" alt="Cổng trường" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-4 left-4 w-8 h-8 bg-gold text-white rounded-full flex items-center justify-center font-bold shadow-lg">1</div>
+                        </div>
+                        <h4 class="font-bold text-navy mb-2" data-vi="Cổng chính" data-en="Main Gate">Cổng chính</h4>
+                        <p class="text-montserrat text-gray-500 text-sm" data-vi="Gửi xe tại nhà xe ngay cổng trường." data-en="Park your vehicle at the parking lot right at the school gate.">Gửi xe tại nhà xe ngay cổng trường.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="flex flex-col items-center text-center group lightbox-trigger cursor-zoom-in" data-image="dauannoibat.jpg" data-caption="Sảnh Hội trường: Đi thẳng theo lối dẫn từ nhà xe">
+                        <div class="relative w-full aspect-video mb-6 overflow-hidden rounded-2xl shadow-lg bg-white p-2">
+                            <img src="dauannoibat.jpg" alt="Sảnh chính" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-4 left-4 w-8 h-8 bg-gold text-white rounded-full flex items-center justify-center font-bold shadow-lg">2</div>
+                        </div>
+                        <h4 class="font-bold text-navy mb-2" data-vi="Sảnh Hội Trường" data-en="Hall Lobby">Sảnh Hội Trường</h4>
+                        <p class="text-montserrat text-gray-500 text-sm" data-vi="Đi thẳng từ nhà xe vào đường chính dẫn tới hội trường." data-en="Go straight from the parking lot to the main road leading to the hall.">Đi thẳng từ nhà xe vào đường chính dẫn tới hội trường.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="flex flex-col items-center text-center group lightbox-trigger cursor-zoom-in" data-image="uel_2811162143.jpg" data-caption="Khu vực check-in: Chụp ảnh lưu niệm cùng Khôi Nguyên">
+                        <div class="relative w-full aspect-video mb-6 overflow-hidden rounded-2xl shadow-lg bg-white p-2">
+                            <img src="uel_2811162143.jpg" alt="Khu vực chụp ảnh" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-4 left-4 w-8 h-8 bg-gold text-white rounded-full flex items-center justify-center font-bold shadow-lg">3</div>
+                        </div>
+                        <h4 class="font-bold text-navy mb-2" data-vi="Khu vực chụp ảnh" data-en="Photo Area">Khu vực chụp ảnh</h4>
+                        <p class="text-montserrat text-gray-500 text-sm" data-vi="Sau buổi lễ, mình sẽ đợi bạn ở đây!" data-en="After the ceremony, I'll be waiting for you here!">Sau buổi lễ, mình sẽ đợi bạn ở đây!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Polaroid Photo Stack Section -->
+        <section class="gallery-section fade-in max-w-[900px] mx-auto px-5 mt-12">
+            <div class="card flex flex-col md:flex-row gap-8 items-center relative overflow-visible">
+                <div class="w-full md:w-1/2 text-left">
+                    <h2 class="!text-left" data-vi="Album Kỷ Niệm" data-en="Graduation Album">Album Kỷ Niệm</h2>
+                    <p class="mb-8 text-gray-600 leading-relaxed" data-vi="Nhấp vào các tấm hình Polaroid kế bên để lật xem từng góc ảnh tốt nghiệp nhỏ nhắn của Khôi Nguyên. Bạn cũng có thể click vào góc mở rộng để xem ảnh lớn chi tiết hơn." data-en="Click on the Polaroid images to flip through my graduation memories. You can also tap the zoom icon to view the photos in high resolution.">
+                        Nhấp vào các tấm hình Polaroid kế bên để lật xem từng góc ảnh tốt nghiệp nhỏ nhắn của Khôi Nguyên. Bạn cũng có thể click vào góc mở rộng để xem ảnh lớn chi tiết hơn.
+                    </p>
+                    <div class="flex justify-start">
+                        <a href="https://drive.google.com/" target="_blank" class="action-btn !m-0 inline-flex items-center gap-2" data-vi="Xem Toàn Bộ Drive" data-en="View Full Drive Album">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>Xem Toàn Bộ Drive</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2 flex flex-col items-center justify-center py-6 min-h-[360px] relative">
+                    <!-- Polaroid Stack -->
+                    <div class="polaroid-stack relative w-[240px] h-[300px]">
+                        <!-- Card 1 -->
+                        <div class="polaroid-card-item active shadow-lg" style="--rot: -2deg; z-index: 3;" data-index="0">
+                            <div class="relative w-full aspect-square overflow-hidden bg-gray-100 rounded-sm">
+                                <img src="grad_photo_1.png" alt="Khôi Nguyên tốt nghiệp" class="w-full h-full object-cover">
+                                <button class="absolute top-2 right-2 bg-navy/80 hover:bg-navy text-white w-7 h-7 rounded-full flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition duration-300 lightbox-stack-trigger" data-image="grad_photo_1.png" data-caption="🎓 Khoảnh khắc tốt nghiệp tự hào">
+                                    <i class="fa-solid fa-expand"></i>
+                                </button>
+                            </div>
+                            <p class="polaroid-caption font-serif italic text-xs text-center text-gray-700 mt-3" data-vi="🎓 Cử nhân Công nghệ Kỹ thuật" data-en="🎓 Proud Graduate of Technology">🎓 Cử nhân Công nghệ Kỹ thuật</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="polaroid-card-item shadow-lg" style="--rot: 4deg; z-index: 2;" data-index="1">
+                            <div class="relative w-full aspect-square overflow-hidden bg-gray-100 rounded-sm">
+                                <img src="grad_photo_2.png" alt="Bay cao ước mơ" class="w-full h-full object-cover">
+                                <button class="absolute top-2 right-2 bg-navy/80 hover:bg-navy text-white w-7 h-7 rounded-full flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition duration-300 lightbox-stack-trigger" data-image="grad_photo_2.png" data-caption="🎈 Bay cao cùng những ước mơ">
+                                    <i class="fa-solid fa-expand"></i>
+                                </button>
+                            </div>
+                            <p class="polaroid-caption font-serif italic text-xs text-center text-gray-700 mt-3" data-vi="🎈 Bay cao những ước mơ" data-en="🎈 Flying high with dreams">🎈 Bay cao những ước mơ</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="polaroid-card-item shadow-lg" style="--rot: -5deg; z-index: 1;" data-index="2">
+                            <div class="relative w-full aspect-square overflow-hidden bg-gray-100 rounded-sm">
+                                <img src="grad_photo_3.png" alt="Bằng tốt nghiệp & Hoa" class="w-full h-full object-cover">
+                                <button class="absolute top-2 right-2 bg-navy/80 hover:bg-navy text-white w-7 h-7 rounded-full flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition duration-300 lightbox-stack-trigger" data-image="grad_photo_3.png" data-caption="💐 Kết thúc hành trình tươi đẹp">
+                                    <i class="fa-solid fa-expand"></i>
+                                </button>
+                            </div>
+                            <p class="polaroid-caption font-serif italic text-xs text-center text-gray-700 mt-3" data-vi="💐 Thành quả ngọt ngào" data-en="💐 Sweet graduation rewards">💐 Thành quả ngọt ngào</p>
+                        </div>
+                    </div>
+                    <!-- Interaction hint -->
+                    <div class="polaroid-hint mt-8 text-xs text-gray-400 text-center font-medium animate-bounce flex items-center gap-1" data-vi="👆 Chạm vào ảnh để đổi tấm khác" data-en="👆 Tap photo to shuffle card">
+                        <i class="fa-solid fa-hand-pointer"></i>
+                        <span>Chạm vào ảnh để đổi tấm khác</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Polaroid Guest Wishes (Corkboard) -->
+        <section class="guestbook-section fade-in max-w-[900px] mx-auto px-5 mt-12">
+            <div class="card !block relative overflow-hidden">
+                <!-- Stitched tape decoration -->
+                <div class="absolute top-0 left-12 w-24 h-5 bg-yellow-100/60 -rotate-2 shadow-sm border-b border-yellow-200/20 backdrop-blur-[1px]"></div>
+                
+                <h2 data-vi="Lưu Bút & Lời Chúc" data-en="Graduation Guestbook">Lưu Bút & Lời Chúc</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-[60ch] mx-auto" data-vi="Để lại một vài dòng yêu thương hoặc lời nhắn nhủ thân tình gửi đến Khôi Nguyên bạn nhé. Tấm thiệp xinh xắn của bạn sẽ được ghim thẳng lên bảng lưu bút!" data-en="Leave a few loving words or a friendly message to send to Khôi Nguyên. Your cute note will be pinned straight onto the guestbook board!">
+                    Để lại một vài dòng yêu thương hoặc lời nhắn nhủ thân tình gửi đến Khôi Nguyên bạn nhé. Tấm thiệp xinh xắn của bạn sẽ được ghim thẳng lên bảng lưu bút!
+                </p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <!-- Wish Form Card -->
+                    <div class="lg:col-span-2 wish-form-card p-6 rounded-md bg-white border border-gray-200 shadow-sm relative flex flex-col justify-between">
+                        <form id="wish-form" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1 text-left" data-vi="Tên của bạn *" data-en="Your Name *">Tên của bạn *</label>
+                                <input type="text" id="wish-name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gold text-sm" data-vi-placeholder="Nhập tên của bạn..." data-en-placeholder="Your name...">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1 text-left" data-vi="Lời chúc *" data-en="Your Wish *">Lời chúc *</label>
+                                <textarea id="wish-text" required rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gold text-sm" data-vi-placeholder="Gửi lời chúc tốt đẹp nhất..." data-en-placeholder="Write your sweet message..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1 text-left" data-vi="Chọn màu thiệp" data-en="Choose Note Color">Chọn màu thiệp</label>
+                                <div class="flex gap-3 mt-2">
+                                    <label class="color-radio-label cursor-pointer">
+                                        <input type="radio" name="note-color" value="yellow" checked class="sr-only">
+                                        <span class="color-radio-dot bg-[#fefdb3] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition"></span>
+                                    </label>
+                                    <label class="color-radio-label cursor-pointer">
+                                        <input type="radio" name="note-color" value="pink" class="sr-only">
+                                        <span class="color-radio-dot bg-[#ffd1d7] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition"></span>
+                                    </label>
+                                    <label class="color-radio-label cursor-pointer">
+                                        <input type="radio" name="note-color" value="blue" class="sr-only">
+                                        <span class="color-radio-dot bg-[#c6e1ff] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition"></span>
+                                    </label>
+                                    <label class="color-radio-label cursor-pointer">
+                                        <input type="radio" name="note-color" value="green" class="sr-only">
+                                        <span class="color-radio-dot bg-[#cdfad0] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-navy hover:bg-navy/90 text-white py-3 rounded-md transition font-medium tracking-wide shadow-md hover:-translate-y-[1px] active:translate-y-0 duration-200 mt-2" data-vi="Ghim Lời Chúc" data-en="Pin Wish">
+                                <i class="fa-solid fa-thumbtack mr-2"></i><span>Ghim Lời Chúc</span>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Corkboard Area -->
+                    <div class="lg:col-span-3 corkboard relative rounded-xl p-6 min-h-[360px] md:min-h-[400px] flex items-center justify-center">
+                        <div id="corkboard-notes" class="corkboard-notes-grid relative w-full h-full min-h-[300px]">
+                            <!-- Sticky wishes loaded here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thank You Section -->
+        <section class="thank-you-section fade-in">
+            <h1 class="name">
+                <span data-vi="Cảm ơn" data-en="Thank you,">Cảm ơn</span>
+                <span class="guest-name" data-vi="cục cưng" data-en="sweetheart">cục cưng</span>
+                <span data-vi="nhé" data-en="!">nhé !</span>
+            </h1>
+            <p class="subtitle">
+                <span data-vi="Nguyên rất mong được gặp bạn tại buổi lễ." data-en="I look forward to seeing you at the ceremony.">Nguyên rất mong được gặp bạn tại buổi lễ.</span>
             </p>
-            <a href="#" id="rsvp-btn" class="action-btn" data-vi="Xác Nhận Ngay" data-en="RSVP Now">Xác Nhận Ngay</a>
-        </div>
-       
-    </section>
-
-    <section class="gallery-section fade-in">
-        <div class="card">
-            <h2 data-vi="Kỷ Niệm Lễ Tốt Nghiệp" data-en="Graduation Memories">Kỷ Niệm Lễ Tốt Nghiệp</h2>
-            <p data-vi="Những khoảnh khắc đáng nhớ trong buổi lễ sẽ được cập nhật tại đây." data-en="Memorable moments from the ceremony will be uploaded here.">Những khoảnh khắc đáng nhớ trong buổi lễ sẽ được cập nhật tại đây.</p>
-            <a href="https://drive.google.com/" target="_blank" class="action-btn" data-vi="Xem Album Ảnh" data-en="View Photo Album">Xem Album Ảnh</a>
-        </div>
-    </section>
-
-    <section class="thank-you-section fade-in">
-        <h1 class="name">
-            <span data-vi="Cảm ơn" data-en="Thank you,">Cảm ơn</span>
-            <span class="guest-name" data-vi="cục cưng" data-en="sweetheart">cục cưng</span>
-            <span data-vi="nhé" data-en="!">nhé !</span>
-
-        </h1>
-        <p class="subtitle">
-            <span data-vi="Toi rất mong được gặp" data-en="Looking forward to seeing you,">Toi rất mong được gặp</span>
-            <strong class="guest-name" data-vi="cục cưng" data-en="sweetheart">bạn</strong>
-            <!-- <span data-vi="tại buổi lễ." data-en="at the ceremony.">tại buổi lễ.</span> -->
-        </p>
-    </section>
+        </section>
     </div>
 
+    <!-- Google Form RSVP Modal -->
     <div id="rsvp-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScpAo8-ve4RpFdndwLPnoy5WCBaloI6ipM6gW3_Ka501PIUgA/viewform?embedded=true" width="100%" height="862" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe>        </div>
+        <div class="modal-content relative bg-[#f4f0e6] p-10 rounded-xl max-w-[680px] w-[90%] shadow-2xl border border-white/20">
+            <span class="close-btn absolute top-2 right-4 text-gray-700 text-3xl font-bold cursor-pointer hover:text-black">&times;</span>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScpAo8-ve4RpFdndwLPnoy5WCBaloI6ipM6gW3_Ka501PIUgA/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe>
+        </div>
     </div>
 
+    <!-- Image Lightbox Modal -->
+    <div id="image-lightbox" class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content-wrap">
+            <img id="lightbox-img" src="" alt="Enlarged image">
+            <p id="lightbox-caption" class="lightbox-caption font-serif italic text-white text-center mt-4 text-lg"></p>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+        <i class="fa-solid fa-circle-check mr-2 text-green-600"></i>
+        <span id="toast-message">Đã sao chép!</span>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
 </body>

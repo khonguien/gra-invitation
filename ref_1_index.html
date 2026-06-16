@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư Mời Lễ Tốt Nghiệp - Hoàng Bảo Lộc</title>
+    
+    <!-- Google Fonts - Bộ font Mulish & Lora hỗ trợ tiếng Việt tốt nhất -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Mulish:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Mulish:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+    .font-invite {
+        font-family: 'Great Vibes', cursive !important;
+        /* Giảm nhẹ độ nghiêng để trông đơn giản hơn */
+        letter-spacing: 1px;
+    }
+</style>
+    <style>
+        /* Thiết lập font chữ mặc định cho toàn bộ trang web */
+        body { 
+            font-family: 'Mulish', sans-serif !important; 
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Thiết lập font có chân cho các tiêu đề sang trọng */
+        .font-serif { 
+            font-family: 'Lora', serif !important; 
+        }
+
+        /* Đảm bảo các dấu tiếng Việt không bị nhảy */
+        p, h3, span {
+            text-rendering: optimizeLegibility;
+        }
+    </style>
+</head>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#0f172a',
+                        gold: '#d97706',
+                        goldlight: '#fBBF24',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #f8fafc; overflow-x: hidden; }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 58, 138, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop') center/cover fixed;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(to right, #FDE68A, #D97706, #FBBF24);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .btn-pulse { animation: pulse-gold 2s infinite; }
+        @keyframes pulse-gold {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(217, 119, 6, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
+        }
+
+    body { 
+        font-family: 'Quicksand', sans-serif; 
+        -webkit-font-smoothing: antialiased;
+    }
+    .font-serif { 
+        font-family: 'Playfair Display', serif !important; 
+    }
+</style>
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-goldlight text-2xl"></i>
+                    <span class="font-serif font-bold text-xl tracking-wider text-white">Hlocoz<span class="text-goldlight">.</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#thu-moi" class="text-gray-200 hover:text-goldlight transition">Thư Mời</a>
+                    <a href="#thong-tin" class="text-gray-200 hover:text-goldlight transition">Sự Kiện</a>
+                    <a href="#ve-toi" class="text-gray-200 hover:text-goldlight transition">Hành Trình</a>
+                    <a href="#rsvp" class="bg-gold hover:bg-yellow-600 text-white px-5 py-2 rounded-full transition font-medium">Tham Dự</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-bg min-h-screen flex items-center justify-center relative">
+        <div class="text-center z-10 px-4 mt-16">
+            <div class="inline-block mb-4 px-4 py-1 rounded-full border border-goldlight/50 bg-navy/30 backdrop-blur-sm text-goldlight text-sm font-medium tracking-widest uppercase reveal">
+                 2026
+            </div>
+            <h1 class="font-serif text-5xl md:text-8xl font-bold text-white mb-6 reveal">Lễ Tốt Nghiệp</h1>
+            <h2 class="text-2xl md:text-4xl text-gray-200 font-light mb-8 reveal">
+                <span class="font-serif italic text-white">của</span> <span class="gold-gradient-text font-bold">Hoàng Bảo Lộc</span>
+            </h2>
+            
+            <!-- Countdown -->
+            <div class="flex justify-center gap-4 md:gap-8 mb-12 reveal">
+                <div class="flex flex-col"><div class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-lg flex items-center justify-center text-white text-2xl font-bold" id="cd-days">00</div><span class="text-gray-300 text-xs mt-2 uppercase">Ngày</span></div>
+                <div class="flex flex-col"><div class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-lg flex items-center justify-center text-white text-2xl font-bold" id="cd-hours">00</div><span class="text-gray-300 text-xs mt-2 uppercase">Giờ</span></div>
+                <div class="flex flex-col"><div class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-lg flex items-center justify-center text-goldlight text-2xl font-bold" id="cd-seconds">00</div><span class="text-goldlight text-xs mt-2 uppercase tracking-widest font-bold">Giây</span></div>
+            </div>
+
+            <a href="#thu-moi" class="animate-bounce inline-block text-white text-2xl"><i class="fa-solid fa-chevron-down"></i></a>
+        </div>
+    </header>
+
+    <!-- Invitation Letter -->
+    
+        </div><section id="thu-moi" class="py-24 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="relative p-1 bg-white rounded-2xl shadow-2xl">
+            <div class="border border-gold/30 rounded-xl p-8 md:p-16 text-center">
+                
+               <h3 class="font-invite text-6xl md:text-8xl text-gold mb-10">
+               Trân trọng kính mời
+             </h3>
+                
+                <div class="max-w-2xl mx-auto">
+                    <!-- Dùng font Mulish cho phần thân bài để cực kỳ dễ đọc -->
+                    <p class="text-lg md:text-2xl text-gray-700 leading-relaxed font-medium mb-12">
+                        Sự hiện diện của bạn là món quà ý nghĩa nhất trong ngày mình nhận bằng Cử nhân. 
+                        Hãy đến để cùng mình lưu giữ những khoảnh khắc cuối cùng của đời sinh viên rực rỡ nhé!
+                    </p>
+                </div>
+
+                <div class="mt-12 flex flex-col items-center">
+                    <p class="font-serif text-3xl text-navy italic mb-4">Trân trọng,</p>
+                    <div class="relative"
+                      
+                        </span>
+                        <p class="relative z-10 pt-4 text-gold uppercase tracking-[0.4em] font-bold text-sm border-t border-navy/10 mt-2">
+                            Hoàng Bảo Lộc
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+           
+
+                        
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Ornament -->
+                <div class="mt-12 opacity-30">
+                    <i class="fa-solid fa-ellipsis text-gold text-2xl tracking-[1em]"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+   
+
+    <!-- Event Info & Contact -->
+    <section id="thong-tin" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="reveal">
+                    <h2 class="font-serif text-4xl text-navy font-bold mb-8">Thông Tin Sự Kiện</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-navy rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fa-regular fa-calendar text-goldlight"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Thời gian</h4>
+                                <p class="text-gray-600">10:30 AM, Thứ Hai - Ngày 11/05/2026</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-navy rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-location-dot text-goldlight"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Địa điểm</h4>
+                                <p class="text-gray-600">Hội trường A - Đại học Kinh tế - Luật (UEL)</p>
+                                <p class="text-Montserrat text-gray-400">Khu phố 3, P. Linh Xuân, TP. Thủ Đức, TP.HCM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info (NEW) -->
+                    <div class="mt-10 p-8 border-2 border-dashed border-gold/30 rounded-3xl bg-gold/5">
+                        <h4 class="font-serif text-xl font-bold text-navy mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-phone-volume text-gold"></i> Liên hệ 
+                        </h4>
+                        <p class="text-Montserrat text-gray-500 mb-6 italic">Nếu bạn đến nơi mà không tìm thấy mình, vui lòng gọi cho các "trợ lý" của mình nhé:</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-3">
+                                <div class="w-10 h-10 bg-navy/10 rounded-full flex items-center justify-center text-navy font-bold">1</div>
+                                <div>
+                                    <p class="text-xs text-orange-400 uppercase font-bold">Quang Huy</p>
+                                    <a href="tel:0327419955" class="text-navy font-bold hover:text-gold transition">032.741.9955</a>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-3">
+                                <div class="w-10 h-10 bg-navy/10 rounded-full flex items-center justify-center text-navy font-bold">2</div>
+                                <div>
+                                    <p class="text-xs text-orange-400 uppercase font-bold">Song Thao</p>
+                                    <a href="tel:0328203229" class="text-navy font-bold hover:text-gold transition">032.820.3229</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Image Integration -->
+                <div class="reveal delay-200">
+                    <div class="relative group">
+                        <div class="absolute -inset-2 bg-gold/20 rounded-2xl blur group-hover:blur-md transition"></div>
+                        <img src="Gặp-mình-ở-đây.jpg" alt="Bản đồ vị trí" class="relative rounded-xl shadow-2xl w-full object-cover">
+                        <div class="absolute top-4 right-4 bg-navy/80 text-white px-3 py-1 rounded-full text-xs font-bold backdrop-blur-md">
+                            Sơ đồ vị trí
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHOTO GUIDANCE SECTION -->
+            <div class="reveal mt-16 pt-10 border-t border-gray-100">
+                <h3 class="font-serif text-3xl text-center text-navy font-bold mb-12 italic tracking-wide">Hướng dẫn di chuyển thực tế</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative w-full aspect-video mb-6 overflow-hidden rounded-2xl shadow-lg">
+                            <img src="480445767_634475715609335_4096110617007142693_n.jpg" alt="Cổng trường" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute top-4 left-4 w-8 h-8 bg-gold text-white rounded-full flex items-center justify-center font-bold shadow-lg">1</div>
+                        </div>
+                        <h4 class="font-bold text-navy mb-2">Cổng 3 UEL</h4>
+                        <p class="text-montserrat text-gray-500">Gửi xe tại nhà xe tầng hầm ngay cổng thứ 3 của trường.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative w-full aspect-video mb-6 overflow-hidden rounded-2xl shadow-lg">
+                            <img src="dauannoibat.jpg" alt="Sảnh chính" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute top-4 left-4 w-8 h-8 bg-gold text-white rounded-full flex items-center justify-center font-bold shadow-lg">2</div>
+                        </div>
+                        <h4 class="font-bold text-navy mb-2">Sảnh Hội Trường A</h4>
+                        <p class="text-montserrat text-gray-500">Đi thẳng từ nhà xe vào đường chính dẫn tới các tòa nhà, Tòa B nằm bên tay trái.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative w-full aspect-video mb-6 overflow-hidden rounded-2xl shadow-lg">
+                            <img src="uel_2811162143.jpg" alt="Khu vực chụp ảnh" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute top-4 left-4 w-8 h-8 bg-gold text-white rounded-full flex items-center justify-center font-bold shadow-lg">3</div>
+                        </div>
+                        <h4 class="font-bold text-navy mb-2">Check-in Gặp Lộc</h4>
+                        <p class="text-montserrat text-gray-500">Sau buổi lễ, mình sẽ đứng tại khu vực vườn cây xanh sảnh B để đón bạn!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="ve-toi" class="py-20 bg-gray-50 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+                <div class="w-full lg:w-1/2 reveal">
+                    <div class="relative">
+                        <div class="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-gold z-0"></div>
+                        <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-4 border-r-4 border-navy z-0"></div>
+                        <img src="ChatGPT-Image-17_03_49-29-thg-4_-2026.jpg" alt="Hoàng Bảo Lộc" class="relative z-10 w-full rounded-lg shadow-2xl">
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 reveal">
+                    <span class="text-gold font-bold tracking-widest uppercase text-sm block mb-4">The Journey</span>
+                    <h2 class="font-serif text-5xl text-navy font-bold mb-6">Hoàng Bảo Lộc</h2>
+                    <p class="text-gray-600 text-montserrat leading-relaxed mb-8">
+                        Kết thúc hành trình tại <strong>Đại học Kinh tế - Luật</strong>, mình đã trưởng thành hơn rất nhiều. Tấm bằng này không chỉ là kiến thức, mà còn là kỷ niệm của những ngày nỗ lực hết mình. Cảm ơn vì đã là một phần trong thanh xuân của mình!
+                    </p>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-4xl font-bold text-navy">2026</p>
+                            <p class="text-sm text-gray-400 uppercase font-bold">Năm Tốt Nghiệp</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-bold text-navy">UEL</p>
+                            <p class="text-sm text-gray-400 uppercase font-bold">Trường Đại Học</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="py-20 hero-bg relative text-white text-center">
+        <div class="max-w-2xl mx-auto px-4 relative z-10">
+            <h2 class="font-serif text-4xl font-bold mb-6">Bạn sẽ đến chứ?</h2>
+            <p class="text-gray-300 mb-10">Xác nhận sớm để mình chuẩn bị đón tiếp chu đáo nhất nhé!</p>
+            <form action="https://formspree.io/f/xnjwqrzg" method="POST" class="space-y-4">
+    <input type="text" name="name" required placeholder="Tên của bạn" 
+           class="w-full p-4 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:border-goldlight text-white">
+    
+    <input type="text" name="contact" placeholder="Số điện thoại hoặc lời nhắn" 
+           class="w-full p-4 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:border-goldlight text-white">
+    
+    <button type="submit" class="w-full bg-gold hover:bg-yellow-600 text-white font-bold py-4 rounded-xl transition btn-pulse">
+        Xác Nhận Tham Dự
+    </button>
+</form>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center bg-navy text-gray-500 text-sm">
+        &copy; 2026 Graduation of Hoang Bao Loc. Created with love.
+    </footer>
+
+    <script>
+        // Countdown
+        const targetDate = new Date("May 11, 2026 09:30:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if (diff < 0) return;
+            document.getElementById("cd-days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("cd-hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("cd-seconds").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }, 1000);
+
+        // Scroll Reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        reveals.forEach(r => observer.observe(r));
+
+        // Confetti
+        function triggerConfetti() {
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#d97706', '#fBBF24', '#ffffff'] });
+        }
+    </script>
+</body>
+</html>
