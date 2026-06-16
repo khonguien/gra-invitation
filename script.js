@@ -428,8 +428,8 @@ function loadWishes() {
             text: isVietnamese ? "Toi khong ngại nhận thêm lời chúc ở đây đâu nhá" : "Congrats on your graduation! Wish you all the best on your next journey!",
             color: "yellow",
             rot: -4,
-            left: 8,
-            top: 10
+            left: 40,
+            top: 30
         },
     ];
 
@@ -441,8 +441,12 @@ function loadWishes() {
         const isOldSingleDefaultEmptyName = wishes.length === 1 && 
             (wishes[0].name === "" || wishes[0].name === undefined) &&
             (wishes[0].text.includes("Toi khong ngại") || wishes[0].text.includes("Congrats on your graduation"));
+        const isOldDefaultPosition = wishes.length === 1 &&
+            wishes[0].name === "Khoi Nguyen" &&
+            wishes[0].left === 8 &&
+            wishes[0].top === 10;
 
-        if (isOldThreeDefaults || isOldSingleDefaultEmptyName) {
+        if (isOldThreeDefaults || isOldSingleDefaultEmptyName || isOldDefaultPosition) {
             wishes = defaultWishes;
             localStorage.setItem('graduation_wishes', JSON.stringify(wishes));
         }
