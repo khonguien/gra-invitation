@@ -431,6 +431,27 @@
             </div>
         </section>
 
+        <!-- SoundCloud Playlist Section -->
+        <section class="playlist-section fade-in max-w-[1150px] mx-auto px-5 mt-12">
+            <div class="card !block relative overflow-hidden">
+                <!-- Stitched tape decoration -->
+                <div class="absolute top-0 left-12 w-24 h-5 bg-yellow-100/60 -rotate-2 shadow-sm border-b border-yellow-200/20 backdrop-blur-[1px]"></div>
+                
+                <h2 data-vi="Giai Điệu Tốt Nghiệp" data-en="Graduation Playlist">Giai Điệu Tốt Nghiệp</h2>
+                <p class="text-center text-gray-600 mb-6 max-w-[60ch] mx-auto"
+                    data-vi="Âm nhạc là mảnh ghép không thể thiếu cho những kỷ niệm. Hãy cùng lắng nghe danh sách bài hát yêu thích đồng hành cùng Khôi Nguyên nhé!"
+                    data-en="Music is the missing piece for beautiful memories. Let's listen to the playlist that accompanies Khôi Nguyên!">
+                    Âm nhạc là mảnh ghép không thể thiếu cho những kỷ niệm. Hãy cùng lắng nghe danh sách bài hát yêu thích đồng hành cùng Khôi Nguyên nhé!
+                </p>
+                
+                <div class="soundcloud-wrapper mx-auto max-w-[800px] rounded-xl overflow-hidden shadow-lg border border-gray-200/50 bg-white p-2">
+                    <iframe id="soundcloud-iframe" width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" 
+                        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2253944465&color=%23d97706&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
         <!-- Polaroid Photo Stack Section -->
         <section class="gallery-section fade-in max-w-[1150px] mx-auto px-5 mt-12">
             <div class="card flex flex-col md:flex-row gap-8 items-center relative overflow-visible">
@@ -637,6 +658,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://w.soundcloud.com/player/api.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js?v=1.0.7"></script>
 </body>

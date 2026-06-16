@@ -1,21 +1,79 @@
 let isVietnamese = true;
 
-// HTML5 Background Music Player & Playlist configuration
-const playlist = [
-    'https://archive.org/download/78_2283-Dream-a-little-dream-of-me/2283-Dream-a-little-dream-of-me.mp3'
-];
-let currentTrackIndex = 0;
-const bgMusic = new Audio(playlist[currentTrackIndex]);
-bgMusic.loop = playlist.length === 1;
+// Background Music Player & SoundCloud integration
+let soundcloudWidget = null;
+let isPlaying = false;
+let bgMusicFallback = null;
+let musicInitialized = false;
 
-// Cycle playlist if there are multiple tracks
-bgMusic.addEventListener('ended', () => {
-    if (playlist.length > 1) {
-        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-        bgMusic.src = playlist[currentTrackIndex];
-        playMusic();
+function updateTooltip() {
+    const musicTooltip = document.querySelector('.music-tooltip');
+    if (musicTooltip) {
+        if (isPlaying) {
+            musicTooltip.textContent = isVietnamese ? 'Tạm dừng nhạc ⏸️' : 'Pause Music ⏸️';
+        } else {
+            musicTooltip.textContent = isVietnamese ? 'Phát nhạc 🎵' : 'Play Music 🎵';
+        }
     }
-});
+}
+
+function initMusic() {
+    if (musicInitialized) return;
+    musicInitialized = true;
+
+    const iframe = document.getElementById('soundcloud-iframe');
+    if (iframe && window.SC) {
+        try {
+            soundcloudWidget = SC.Widget(iframe);
+            
+            soundcloudWidget.bind(SC.Widget.Events.PLAY, () => {
+                isPlaying = true;
+                if (musicBtn) {
+                    musicBtn.classList.add('playing', 'active');
+                    musicBtn.setAttribute('title', isVietnamese ? 'Tạm dừng' : 'Pause');
+                }
+                updateTooltip();
+            });
+            
+            soundcloudWidget.bind(SC.Widget.Events.PAUSE, () => {
+                isPlaying = false;
+                if (musicBtn) musicBtn.classList.remove('playing');
+                updateTooltip();
+            });
+            
+            soundcloudWidget.bind(SC.Widget.Events.FINISH, () => {
+                isPlaying = false;
+                if (musicBtn) musicBtn.classList.remove('playing');
+                updateTooltip();
+            });
+            return;
+        } catch (e) {
+            console.warn("SoundCloud Widget bind failed, using fallback music player:", e);
+        }
+    }
+
+    // Fallback: Native Audio Player
+    const playlist = [
+        'https://archive.org/download/78_2283-Dream-a-little-dream-of-me/2283-Dream-a-little-dream-of-me.mp3'
+    ];
+    bgMusicFallback = new Audio(playlist[0]);
+    bgMusicFallback.loop = true;
+
+    bgMusicFallback.addEventListener('play', () => {
+        isPlaying = true;
+        if (musicBtn) {
+            musicBtn.classList.add('playing', 'active');
+            musicBtn.setAttribute('title', isVietnamese ? 'Tạm dừng' : 'Pause');
+        }
+        updateTooltip();
+    });
+
+    bgMusicFallback.addEventListener('pause', () => {
+        isPlaying = false;
+        if (musicBtn) musicBtn.classList.remove('playing');
+        updateTooltip();
+    });
+}
 
 const langBtn = document.getElementById('lang-btn');
 const elementsToTranslate = document.querySelectorAll('[data-vi]');
@@ -44,14 +102,7 @@ langBtn.addEventListener('click', () => {
     });
 
     // Translate music tooltips
-    const musicTooltip = document.querySelector('.music-tooltip');
-    if (musicTooltip) {
-        if (bgMusic && !bgMusic.paused) {
-            musicTooltip.textContent = isVietnamese ? 'Tạm dừng nhạc ⏸️' : 'Pause Music ⏸️';
-        } else {
-            musicTooltip.textContent = isVietnamese ? 'Phát nhạc 🎵' : 'Play Music 🎵';
-        }
-    }
+    updateTooltip();
 
     // Refresh guestbook wishes translation
     loadWishes();
@@ -281,34 +332,47 @@ END:VCALENDAR`;
     });
 }
 
-// HTML5 Background Music Player controls
+// Background Music Player controls
 const musicBtn = document.getElementById('music-btn');
 const musicTooltip = document.querySelector('.music-tooltip');
 
 function playMusic() {
-    if (!bgMusic) return;
-    bgMusic.play().then(() => {
-        if (musicBtn) {
-            musicBtn.classList.add('playing', 'active');
-            musicBtn.setAttribute('title', isVietnamese ? 'Tạm dừng' : 'Pause');
+    if (soundcloudWidget) {
+        try {
+            soundcloudWidget.play();
+        } catch (e) {
+            console.warn("SoundCloud Widget play failed, using fallback:", e);
+            playFallbackMusic();
         }
-        if (musicTooltip) {
-            musicTooltip.textContent = isVietnamese ? 'Tạm dừng nhạc ⏸️' : 'Pause Music ⏸️';
-        }
-    }).catch(err => {
-        console.log("Audio playback blocked or failed:", err);
-    });
+    } else {
+        playFallbackMusic();
+    }
+}
+
+function playFallbackMusic() {
+    if (bgMusicFallback) {
+        bgMusicFallback.play().catch(err => {
+            console.log("Audio playback blocked or failed:", err);
+        });
+    }
 }
 
 function pauseMusic() {
-    if (!bgMusic) return;
-    bgMusic.pause();
-    if (musicBtn) {
-        musicBtn.classList.remove('playing', 'active');
-        musicBtn.setAttribute('title', isVietnamese ? 'Phát nhạc' : 'Play Music');
+    if (soundcloudWidget) {
+        try {
+            soundcloudWidget.pause();
+        } catch (e) {
+            console.warn("SoundCloud Widget pause failed, using fallback:", e);
+            pauseFallbackMusic();
+        }
+    } else {
+        pauseFallbackMusic();
     }
-    if (musicTooltip) {
-        musicTooltip.textContent = isVietnamese ? 'Phát nhạc 🎵' : 'Play Music 🎵';
+}
+
+function pauseFallbackMusic() {
+    if (bgMusicFallback) {
+        bgMusicFallback.pause();
     }
 }
 
@@ -317,10 +381,10 @@ if (musicBtn) {
         e.preventDefault();
         e.stopPropagation();
 
-        if (bgMusic.paused) {
-            playMusic();
-        } else {
+        if (isPlaying) {
             pauseMusic();
+        } else {
+            playMusic();
         }
     });
 }
@@ -671,9 +735,11 @@ if (wishForm) {
 // Load wishes on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
     loadWishes();
+    initMusic();
 });
-// Trigger loading wishes in case DOMContentLoaded has already fired
+// Trigger loading wishes/music in case DOMContentLoaded has already fired
 loadWishes();
+initMusic();
 
 // Confetti burst logic using canvas-confetti
 function triggerConfetti() {
