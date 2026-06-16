@@ -376,15 +376,27 @@ function pauseFallbackMusic() {
     }
 }
 
-if (musicBtn) {
+const musicPopup = document.getElementById('music-popup');
+
+if (musicBtn && musicPopup) {
     musicBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        if (isPlaying) {
-            pauseMusic();
-        } else {
-            playMusic();
+        musicPopup.classList.toggle('show');
+    });
+
+    // Close the music popup when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.music-toggle-container')) {
+            musicPopup.classList.remove('show');
+        }
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            musicPopup.classList.remove('show');
         }
     });
 }
