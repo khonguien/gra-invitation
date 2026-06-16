@@ -98,7 +98,7 @@ section {
 }
 
 .name {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
     color: #1a1a1a;
 }
@@ -169,7 +169,7 @@ section {
 }
 
 .card h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     margin-bottom: 25px;
     color: #1a1a1a;
     text-align: center;
@@ -222,7 +222,7 @@ section {
 }
 
 .hero-top-text {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.5rem;
     font-style: italic;
     text-align: center;
@@ -1411,7 +1411,7 @@ body.content-revealed .scrap-speaker2 {
 }
 
 .timeline-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
 }
@@ -1531,7 +1531,7 @@ body.content-revealed .scrap-speaker2 {
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.18);
     font-size: 1rem;
     line-height: 1.4;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #2c2c2c;
     transform: rotate(var(--rot, 0deg));
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, z-index 0.1s;
@@ -1575,7 +1575,7 @@ body.content-revealed .scrap-speaker2 {
     font-weight: 700;
     margin-top: 8px;
     text-align: right;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.85rem;
     border-top: 1px dashed rgba(44, 44, 44, 0.1);
     padding-top: 4px;

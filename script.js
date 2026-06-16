@@ -25,7 +25,7 @@ function initMusic() {
     if (iframe && window.SC) {
         try {
             soundcloudWidget = SC.Widget(iframe);
-            
+
             soundcloudWidget.bind(SC.Widget.Events.PLAY, () => {
                 isPlaying = true;
                 if (musicBtn) {
@@ -34,13 +34,13 @@ function initMusic() {
                 }
                 updateTooltip();
             });
-            
+
             soundcloudWidget.bind(SC.Widget.Events.PAUSE, () => {
                 isPlaying = false;
                 if (musicBtn) musicBtn.classList.remove('playing');
                 updateTooltip();
             });
-            
+
             soundcloudWidget.bind(SC.Widget.Events.FINISH, () => {
                 isPlaying = false;
                 if (musicBtn) musicBtn.classList.remove('playing');
@@ -140,7 +140,7 @@ function revealContent(e) {
 
         // Trigger autoplay on HTML5 Audio when content is revealed (first user gesture)
         playMusic();
- 
+
         // Trigger celebratory confetti burst on invitation reveal!
         setTimeout(() => {
             triggerConfetti();
@@ -485,7 +485,7 @@ function loadWishes() {
         wishes = JSON.parse(stored);
         // Migrate old defaults to the single new default wish with "Khoi Nguyen" as name
         const isOldThreeDefaults = wishes.length === 3 && wishes.some(w => w.name === "Khoi Nguyen" || w.name === "");
-        const isOldSingleDefaultEmptyName = wishes.length === 1 && 
+        const isOldSingleDefaultEmptyName = wishes.length === 1 &&
             (wishes[0].name === "" || wishes[0].name === undefined) &&
             (wishes[0].text.includes("Toi khong ngại") || wishes[0].text.includes("Congrats on your graduation"));
         const isOldDefaultPosition = wishes.length === 1 &&
@@ -744,14 +744,48 @@ if (wishForm) {
     });
 }
 
+// Countdown Timer logic targeting November 1st, 2026
+function initCountdown() {
+    const targetDate = new Date("Nov 1, 2026 18:00:00").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        const daysEl = document.getElementById("cd-days");
+        const hoursEl = document.getElementById("cd-hours");
+        const secondsEl = document.getElementById("cd-seconds");
+
+        if (diff < 0) {
+            if (daysEl) daysEl.innerText = "00";
+            if (hoursEl) hoursEl.innerText = "00";
+            if (secondsEl) secondsEl.innerText = "00";
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        if (daysEl) daysEl.innerText = days < 10 ? "0" + days : days;
+        if (hoursEl) hoursEl.innerText = hours < 10 ? "0" + hours : hours;
+        if (secondsEl) secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+}
+
 // Load wishes on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
     loadWishes();
     initMusic();
+    initCountdown();
 });
 // Trigger loading wishes/music in case DOMContentLoaded has already fired
 loadWishes();
 initMusic();
+initCountdown();
 
 // Confetti burst logic using canvas-confetti
 function triggerConfetti() {
