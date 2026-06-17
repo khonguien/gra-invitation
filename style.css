@@ -35,17 +35,6 @@ body::before {
     z-index: 100;
 }
 
-.lang-toggle .scrap-pin {
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    width: 30px;
-    height: auto;
-    transform: rotate(-35deg);
-    z-index: 110;
-    pointer-events: none;
-}
-
 #lang-btn {
     background: transparent;
     border: 1px solid #2c2c2c;
@@ -534,6 +523,16 @@ section {
     animation: none;
 }
 
+.scrap-pin {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 30px;
+    --rot: -50deg;
+    transform: rotate(var(--rot));
+    z-index: 10;
+    pointer-events: none;
+}
 
 .scrap-speaker2 {
     bottom: -25%;
@@ -740,7 +739,6 @@ body.content-revealed .scrap-speaker2 {
         width: 150px;
         bottom: 1%;
     }
-
 }
 
 .action-btn {
@@ -1741,7 +1739,6 @@ body.content-revealed .scrap-speaker2 {
         width: 110px !important;
         top: 8% !important;
     }
-
 
     .scrap-speaker2 {
         width: 200px !important;
