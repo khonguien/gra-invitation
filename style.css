@@ -506,8 +506,8 @@ section {
 }
 
 .scrap-hand {
-    top: 15%;
-    right: -5%;
+    top: 38%;
+    right: 12%;
     width: 150px;
     --rot: -15deg;
     transform: rotate(var(--rot));
@@ -524,26 +524,25 @@ section {
 }
 
 .scrap-pin {
-    position: absolute;
-    top: -15px;
-    left: -15px;
-    width: 30px;
+    top: -3%;
+    right: 7%;
+    width: 50px;
     --rot: -50deg;
     transform: rotate(var(--rot));
-    z-index: 10;
-    pointer-events: none;
+    animation: swingInRight 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, scrapBounce2 2.5s infinite 2.1s;
 }
 
 .scrap-speaker2 {
-    bottom: -25%;
-    left: -5%;
-    width: 300px;
+    bottom: -15%;
+    left: -12%;
+    width: 360px;
     --rot: 0deg;
     transform: rotate(var(--rot));
     animation: swingInLeft 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, scrapBounce2 2.5s infinite 2.0s;
 }
 
-body.content-revealed .scrap-hand {
+body.content-revealed .scrap-hand,
+body.content-revealed .scrap-pin {
     animation: swingOutRight 0.8s ease-in forwards !important;
 }
 
@@ -726,7 +725,8 @@ body.content-revealed .scrap-speaker2 {
 
     .scrap-hand {
         width: 100px;
-        /* top: -10%;  */
+        top: 38%;
+        right: 5%;
     }
 
     .scrap-speaker {
@@ -736,8 +736,14 @@ body.content-revealed .scrap-speaker2 {
     }
 
     .scrap-speaker2 {
-        width: 150px;
-        bottom: 1%;
+        width: 180px;
+        bottom: 6%;
+        left: -10%;
+    }
+
+    .scrap-pin {
+        width: 40px;
+        right: 15%;
     }
 }
 
@@ -1737,12 +1743,13 @@ body.content-revealed .scrap-speaker2 {
 
     .scrap-hand {
         width: 110px !important;
-        top: 8% !important;
+        top: 16% !important;
     }
 
     .scrap-speaker2 {
-        width: 200px !important;
-        bottom: -20% !important;
+        width: 250px !important;
+        bottom: -10% !important;
+        left: -12% !important;
     }
 
     .hero-bottom-text {
