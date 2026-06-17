@@ -1,31 +1,30 @@
-Viewed script.js:742-778
-Edited script.js
-Edited script.js
-Edited script.js
-Edited script.js
-Edited script.js
-Edited index.html
-Edited style.css
+# Project Status Summary
 
-Here is a concise summary of the changes made in this session to carry over to a new conversation:
+Last Updated: 2026-06-18T01:05:00+08:00
 
-### 1. Music Player Redesign (SoundCloud Integration)
-* **Visuals:** Replaced the large inline SoundCloud widget card with a hidden floating popover menu (`#music-popup`). It renders a compact SoundCloud player iframe (`height="166"`) and floats 60px above the floating music disc button in the bottom-right.
-* **Control Syncing:** Used the `SC.Widget` API (`https://w.soundcloud.com/player/api.js`) to sync the player state with the spinning button disc animation. Clicking the disc toggles the popup open/closed, and clicking outside or pressing `Escape` closes the popover.
-* **Autoplay & Fallback:** Autoplay is triggered on the first screen tap (user gesture). If the SoundCloud script is blocked or offline, it gracefully falls back to your original native HTML5 Audio player (`Dream a little dream of me` MP3).
+Here is the current working status and features implemented in the graduation invitation project:
 
-### 2. Complete Typography Uniformity (Montserrat)
-* **Fonts:** Replaced all visual styling overrides of `Playfair Display` (serif) and `Outfit` (sans-serif) in `style.css` with **Montserrat** to match your hero subtitle.
-* **Tailwind Config:** Configured Tailwind's custom `sans` and `serif` tokens in `index.html` to route to `'Montserrat', sans-serif`.
-* **Head Optimization:** Cleaned up the Google Fonts `<link>` tag in `<head>` to only load the required Montserrat font family weights for faster page speeds.
+### 1. Global Real-time Wishes Board (Firebase Integration)
+* **Real-time Synchronization:** Migrated the guestbook wishes board from a local storage-only model to a global backend using **Firebase Realtime Database**. Notes update, move, or delete instantly across all devices.
+* **Auto-Fallback:** If the Firebase config in `script.js` is left unconfigured, the wishes system gracefully falls back to using `localStorage` to ensure local development and testing never break.
+* **Note Ownership:** Generates a persistent browser identifier (`graduation_wish_creator_id` in `localStorage`) so that normal guests can only edit, drag, or delete wishes they created in their current browser.
+* **Admin Moderation Mode:** Added an admin bypass query parameter (`?admin=admin123`, customizable). Elevates the user to admin mode to move, clean up, or delete any wishes on the board.
+* **Flicker Protection:** Prevents layout stuttering by pausing DOM updates of active wishes if a real-time update is received while the user is dragging a note.
 
-### 3. Countdown Timer Implementation
-* **Functionality:** Added the missing countdown function (`initCountdown`) to `script.js` to update the `cd-days`, `cd-hours`, and `cd-seconds` divs in real time.
-* **Configuration:** Set the target countdown date to **November 1st, 2026 at 18:00:00** with formatting to pad single-digit numbers with leading zeros (e.g. `09` instead of `9`).
+### 2. Music Player (SoundCloud & Native Fallback)
+* **SoundCloud Widget:** Replaced the large inline widget card with a floating popover menu (`#music-popup`) that loads a compact SoundCloud player iframe.
+* **Disc Animation Sync:** Syncs the SoundCloud widget's playing state with the spinning button disc animation in the bottom-right using the `SC.Widget` API.
+* **HTML5 Fallback:** If SoundCloud is blocked or offline, it gracefully falls back to playing a local native MP3 player (`Dream a little dream of me`).
 
-### 4. Pinned Wishes Capacity, Dragging Fix, and Board Height Expansion
-* **Wishes Capacity Testing:** Generated and rendered 30 temporary random wish notes to visual capacity limits on the corkboard, which verified the board boundary container parameters and note wrapping are fully layout-safe. All temporary test wishes were subsequently removed to restore the codebase to a clean production state.
-* **Dragging Edge Constraints:** Fixed a dragging constraint bug in the `updatePosition` function in `script.js`. The calculations originally used the rotated note dimensions from `getBoundingClientRect()`, which artificially inflated margins and locked the note away from the right/bottom borders. Replaced this with `el.offsetWidth` and `el.offsetHeight` (the unrotated layout properties) and adjusted bounds clamp padding to `0.5%` to allow placement extremely close to all borders.
-* **Corkboard Height Expansion:** Increased the overall size of the guestbook board:
-  - **Desktop:** The corkboard div container in `index.html` was expanded from `min-h-[500px]` to `min-h-[700px]` (with its notes grid expanded to `min-h-[650px]`) to give more display space.
-  - **Mobile:** The `.corkboard` media query in `style.css` was expanded from `min-height: 320px` to `min-height: 550px` to keep layouts spacious on mobile viewports.
+### 3. Typography & UI Uniformity
+* **Font Family:** Standardized all headings, text, and components to **Montserrat** (removing Outfit and Playfair Display overrides) to keep the scrapbook design clean and premium.
+* **Tailwind Config:** Custom `sans` and `serif` Tailwind font-family overrides are routed to `'Montserrat', sans-serif` directly in `index.html`.
+
+### 4. Countdown Timer
+* **Real-time Countdown:** A countdown clock (`cd-days`, `cd-hours`, `cd-seconds`) targeting November 1st, 2026 at 18:00:00.
+* **Formatting:** Pads numbers with leading zeros (e.g. `09` instead of `9`) and translates dynamically between Vietnamese and English.
+
+### 5. Corkboard Boundaries & Cache Busting
+* **Boundary Restrictions:** Drag constraints in `updatePosition` calculate borders using unrotated dimensions (`offsetWidth`/`offsetHeight`), allowing notes to be dragged extremely close to borders.
+* **Size Expansion:** Expanded the corkboard minimum height to `700px` on desktop and `550px` on mobile for plenty of space.
+* **Cache Busting:** Bumped stylesheet and script link parameters in `index.html` to `v=1.1.0` to force all browsers to bypass caches and immediately load the live Firebase real-time wishes board updates.
