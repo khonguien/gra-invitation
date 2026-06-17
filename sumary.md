@@ -3,6 +3,9 @@ Edited script.js
 Edited script.js
 Edited script.js
 Edited script.js
+Edited script.js
+Edited index.html
+Edited style.css
 
 Here is a concise summary of the changes made in this session to carry over to a new conversation:
 
@@ -19,3 +22,10 @@ Here is a concise summary of the changes made in this session to carry over to a
 ### 3. Countdown Timer Implementation
 * **Functionality:** Added the missing countdown function (`initCountdown`) to `script.js` to update the `cd-days`, `cd-hours`, and `cd-seconds` divs in real time.
 * **Configuration:** Set the target countdown date to **November 1st, 2026 at 18:00:00** with formatting to pad single-digit numbers with leading zeros (e.g. `09` instead of `9`).
+
+### 4. Pinned Wishes Capacity, Dragging Fix, and Board Height Expansion
+* **Wishes Capacity Testing:** Generated and rendered 30 temporary random wish notes to visual capacity limits on the corkboard, which verified the board boundary container parameters and note wrapping are fully layout-safe. All temporary test wishes were subsequently removed to restore the codebase to a clean production state.
+* **Dragging Edge Constraints:** Fixed a dragging constraint bug in the `updatePosition` function in `script.js`. The calculations originally used the rotated note dimensions from `getBoundingClientRect()`, which artificially inflated margins and locked the note away from the right/bottom borders. Replaced this with `el.offsetWidth` and `el.offsetHeight` (the unrotated layout properties) and adjusted bounds clamp padding to `0.5%` to allow placement extremely close to all borders.
+* **Corkboard Height Expansion:** Increased the overall size of the guestbook board:
+  - **Desktop:** The corkboard div container in `index.html` was expanded from `min-h-[500px]` to `min-h-[700px]` (with its notes grid expanded to `min-h-[650px]`) to give more display space.
+  - **Mobile:** The `.corkboard` media query in `style.css` was expanded from `min-height: 320px` to `min-height: 550px` to keep layouts spacious on mobile viewports.

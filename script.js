@@ -583,12 +583,12 @@ function makeElementDraggable(el, index) {
         let leftPct = startLeft + deltaLeftPct;
         let topPct = startTop + deltaTopPct;
 
-        const noteRect = el.getBoundingClientRect();
-        const noteWidthPct = (noteRect.width / corkRect.width) * 100;
-        const noteHeightPct = (noteRect.height / corkRect.height) * 100;
+        // Use unrotated layout dimensions (offsetWidth/offsetHeight) to allow placing notes right near the edges
+        const noteWidthPct = (el.offsetWidth / corkRect.width) * 100;
+        const noteHeightPct = (el.offsetHeight / corkRect.height) * 100;
 
-        leftPct = Math.max(1, Math.min(100 - noteWidthPct - 1, leftPct));
-        topPct = Math.max(1, Math.min(100 - noteHeightPct - 1, topPct));
+        leftPct = Math.max(0.5, Math.min(100 - noteWidthPct - 0.5, leftPct));
+        topPct = Math.max(0.5, Math.min(100 - noteHeightPct - 0.5, topPct));
 
         el.style.left = `${leftPct.toFixed(2)}%`;
         el.style.top = `${topPct.toFixed(2)}%`;
