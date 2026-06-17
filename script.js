@@ -270,17 +270,17 @@ if (calSyncBtn) {
 
         const title = "Le Tot Nghiep - Nguyen Hoang Khoi Nguyen";
         const desc = "Tran trong kinh moi ban tham du le tot nghiep cua Khoi Nguyen tai Hoi truong E4.";
-        const location = "Hoi truong E4, Truong Dai hoc Cong nghiep TP.HCM, 12 Nguyen Van Bao, Phuong 4, Go Vấp, TP.HCM";
+        const location = "Hoi truong E4, Truong Dai hoc Cong nghiep TP.HCM, 12 Nguyen Van Bao, Phuong 4, Go Vap, TP.HCM";
 
-        // Target: Nov 9, 2026 18:00 (Duration: 4 Hours)
+        // Target: Nov 1, 2026 9:00 (Duration: 3 Hours)
         const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Graduation Invitation//Nguyen Hoang Khoi Nguyen//EN
 BEGIN:VEVENT
 UID:khoinguyen-grad-2026
 DTSTAMP:20260616T000000Z
-DTSTART:20261109T180000
-DTEND:20261109T220000
+DTSTART:20261101T090000
+DTEND:20261101T120000
 SUMMARY:${title}
 DESCRIPTION:${desc}
 LOCATION:${location}

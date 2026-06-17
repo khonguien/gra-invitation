@@ -12,17 +12,17 @@ This markdown file contains all the editable text, settings, and links for the g
 - **Audio Background Music Track URL**: `https://archive.org/download/78_2283-Dream-a-little-dream-of-me/2283-Dream-a-little-dream-of-me.mp3`
 - **Countdown Target Date**: `Nov 1, 2026 18:00:00`
 - **Calendar Event (ICS File) Settings**:
-  - Event Date: `20261109` (November 9, 2026)
-  - Event Start Time: `180000` (18:00 / 6:00 PM)
-  - Event End Time: `220000` (22:00 / 10:00 PM)
+  - Event Date: `20261109` (November 1, 2026)
+  - Event Start Time: `180000` (9:00 / 9:00 AM)
+  - Event End Time: `220000` (12:00 / 12:00 AM)
   - Event Title: `Le Tot Nghiep - Nguyen Hoang Khoi Nguyen`
   - Event Description: `Tran trong kinh moi ban tham du le tot nghiep cua Khoi Nguyen tai Hoi truong E4.`
   - Event Location: `Hoi truong E4, Truong Dai hoc Cong nghiep TP.HCM, 12 Nguyen Van Bao, Phuong 4, Go Vap, TP.HCM`
 
 ## 2. Hero Section
 
-- **Invitation Date Text**: `09 . 11 . 2026`
-- **Invitation Time Text**: `18:00`
+- **Invitation Date Text**: `01 . 11 . 2026`
+- **Invitation Time Text**: `9:00`
 - **Invitation Hero Location**:
   - Vietnamese: `Học mãi cũng ra trường rồi`
   - English: `Finally graduated!`
@@ -36,7 +36,7 @@ This markdown file contains all the editable text, settings, and links for the g
   - Vietnamese: `tới lễ tốt nghiệp của Khôi Nguyên`
   - English: `to Khôi Nguyên's graduation ceremony`
 - **Reveal Screen Hint**:
-  - Vietnamese: `👉 Chạm bất kỳ đâu trên màn hình để mở thiệp 👈`
+  - Vietnamese: `👉 Chạm chỗ nào cũng mở được thiệp hết 👈`
   - English: `👉 Tap anywhere on screen to open the card 👈`
 
 ## 3. Time & Location Card
@@ -47,7 +47,7 @@ This markdown file contains all the editable text, settings, and links for the g
 - **Label Time**:
   - Vietnamese: `Thời gian:`
   - English: `Time:`
-- **Time Value**: `18:00 - 09/11/2026`
+- **Time Value**: `9:00 - 01/11/2026`
 - **Label Location**:
   - Vietnamese: `Địa điểm:`
   - English: `Location:`
@@ -62,7 +62,7 @@ This markdown file contains all the editable text, settings, and links for the g
 - **Add to Calendar Button**:
   - Vietnamese: `Thêm vào Lịch`
   - English: `Add to Calendar`
-- **Location Sketch Polaroid Caption**:
+- **Location Sketch Polaroid Caption**: <!-- temporary turn off -->
   - Vietnamese: `📌 Bản đồ phác thảo vị trí`
   - English: `📌 Sketch Map of the Location`
 
@@ -75,16 +75,16 @@ This markdown file contains all the editable text, settings, and links for the g
   - Vietnamese: `Chào`
   - English: `Hello`
 - **RSVP Prompt Message**:
-  - Vietnamese: `Để mình chuẩn bị đón tiếp chu đáo nhất, bạn xác nhận tham dự lễ tốt nghiệp của mình trước nha.`
+  - Vietnamese: `Tới mà không nói là toi không biết đâu.`
   - English: `To help me prepare the best welcome, please confirm your attendance at my graduation ceremony beforehand.`
 - **RSVP Button Text**:
-  - Vietnamese: `Xác Nhận Ngay`
+  - Vietnamese: `Goooooo`
   - English: `RSVP Now`
-- **RSVP Polaroid Photo Caption**:
-  - Vietnamese: `🎓 Nơi check-in chính của tụi mình`
+- **RSVP Polaroid Photo Caption**: <!-- temporary turn off -->
+  - Vietnamese: `🎓 50K hình lộn xộn`
   - English: `🎓 Where we will take graduation photos`
 
-## 5. Timeline Card
+## 5. Timeline Card <!-- temporary turn off -->
 
 - **Timeline Card Title**:
   - Vietnamese: `Lịch Trình Sự Kiện`
@@ -111,7 +111,7 @@ This markdown file contains all the editable text, settings, and links for the g
     - Description VI: `Bữa tiệc tối nhỏ ấm cúng tri ân mọi người đồng hành cùng Nguyên suốt chặng đường.`
     - Description EN: `A small cozy dinner to thank everyone who accompanied Nguyên along this journey.`
 
-## 6. Dresscode Card
+## 6. Dresscode Card <!-- temporary turn off -->
 
 - **Dresscode Card Title**:
   - Vietnamese: `Dresscode Gợi Ý`
@@ -145,7 +145,7 @@ This markdown file contains all the editable text, settings, and links for the g
 ## 7. Real-world Transportation Guidance
 
 - **Section Title**:
-  - Vietnamese: `Hướng dẫn di chuyển thực tế`
+  - Vietnamese: `Đi theo hướng dẫn để khỏi lạc nha`
   - English: `Real-world navigation guide`
 - **Steps**:
   - **Step 1 (Main Gate)**:
@@ -167,7 +167,7 @@ This markdown file contains all the editable text, settings, and links for the g
 ## 8. Photo Album Gallery
 
 - **Gallery Card Title**:
-  - Vietnamese: `Album Kỷ Niệm`
+  - Vietnamese: `50K hình lộn xộn`
   - English: `Graduation Album`
 - **Gallery Description**:
   - Vietnamese: `Nhấp vào các tấm hình Polaroid kế bên để lật xem từng góc ảnh tốt nghiệp nhỏ nhắn của Khôi Nguyên. Bạn cũng có thể click vào góc mở rộng để xem ảnh lớn chi tiết hơn.`
@@ -182,7 +182,7 @@ This markdown file contains all the editable text, settings, and links for the g
   - Vietnamese: `Lưu Bút & Lời Chúc`
   - English: `Graduation Guestbook`
 - **Guestbook Subtitle**:
-  - Vietnamese: `Nhấp vào bất kỳ khoảng trống nào trên bảng lưu bút để ghim lời chúc của bạn gửi đến Khôi Nguyên nhé!`
+  - Vietnamese: `Nhấp vào bất kỳ khoảng trống nào trên bảng lưu bút để ghim`
   - English: `Click anywhere on the corkboard to pin your wish note to Khôi Nguyên!`
 - **Wish Form Content**:
   - Input Name Label VI: `Tên của bạn (Tùy chọn)`
@@ -191,13 +191,13 @@ This markdown file contains all the editable text, settings, and links for the g
   - Input Name Placeholder EN: `Enter name or leave blank for anonymous...`
   - Input Text Label VI: `Lời chúc *`
   - Input Text Label EN: `Your Wish *`
-  - Input Text Placeholder VI: `Gửi những lời chúc tốt đẹp nhất...`
+  - Input Text Placeholder VI: `Thích gì lói đó...`
   - Input Text Placeholder EN: `Write your sweet message...`
   - Choose Color Label VI: `Chọn màu thiệp`
   - Choose Color Label EN: `Choose Note Color`
   - Submit Button VI: `Ghim Lời Chúc`
   - Submit Button EN: `Pin Wish`
-- **Popup Modal Heading**:
+- **Popup Modal Heading**: <!-- temporary turn off -->
   - Vietnamese: `✏️ Gửi lời chúc đến Khôi Nguyên`
   - English: `✏️ Send a wish to Khôi Nguyên`
 
