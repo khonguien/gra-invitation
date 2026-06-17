@@ -677,8 +677,8 @@ if (wishForm) {
 
         // Generate random rotation and coordinates to simulate physical pinning on the full-width board
         const rot = Math.floor(Math.random() * 16 - 8);
-        const left = Math.floor(Math.random() * 80 + 5); // Spans 5% to 85% of width
-        const top = Math.floor(Math.random() * 65 + 5);  // Spans 5% to 70% of height
+        const left = Math.floor(Math.random() * 90 + 2); // Spans 2% to 92% of width
+        const top = Math.floor(Math.random() * 83 + 2);  // Spans 2% to 85% of height
 
         const newWish = {
             name: nameVal,
