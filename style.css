@@ -535,6 +535,7 @@ section {
 }
 
 .scrap-pin {
+    position: absolute;
     top: -3%;
     right: 7%;
     width: 50px;
