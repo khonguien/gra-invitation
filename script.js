@@ -1,4 +1,53 @@
+// Firebase Configuration - Replace with your own project config values to enable global real-time synchronization.
+// If left as default, the guestbook will gracefully fall back to storing wishes in localStorage.
+const firebaseConfig = {
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "YOUR_FIREBASE_AUTH_DOMAIN",
+    databaseURL: "YOUR_FIREBASE_DATABASE_URL",
+    projectId: "YOUR_FIREBASE_PROJECT_ID",
+    storageBucket: "YOUR_FIREBASE_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_FIREBASE_MESSAGING_SENDER_ID",
+    appId: "YOUR_FIREBASE_APP_ID"
+};
+
+// Admin Passphrase for moderation. Customize this passphrase.
+// Access the admin mode by visiting: https://khonguien.github.io/gra-invitation/?admin=YOUR_ADMIN_PASSPHRASE
+const ADMIN_PASSPHRASE = "admin123";
+
+let database = null;
+let isFirebaseEnabled = false;
+
+if (typeof firebase !== 'undefined' && firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_FIREBASE_API_KEY") {
+    try {
+        firebase.initializeApp(firebaseConfig);
+        database = firebase.database();
+        isFirebaseEnabled = true;
+    } catch (e) {
+        console.error("Firebase initialization failed, falling back to localStorage:", e);
+    }
+}
+
+// Generate or retrieve a unique client identifier to manage note ownership
+function getOrCreateCreatorId() {
+    let creatorId = localStorage.getItem('graduation_wish_creator_id');
+    if (!creatorId) {
+        creatorId = 'creator_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+        localStorage.setItem('graduation_wish_creator_id', creatorId);
+    }
+    return creatorId;
+}
+const myCreatorId = getOrCreateCreatorId();
+
+// Check URL query parameters for admin access
+function checkAdminStatus() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const adminParam = urlParams.get('admin');
+    return adminParam && adminParam === ADMIN_PASSPHRASE;
+}
+const isAdminMode = checkAdminStatus();
+
 let isVietnamese = true;
+
 
 // Background Music Player (HTML5 Audio)
 let bgMusic = null;
@@ -392,50 +441,103 @@ if (polaroidStack) {
 const wishForm = document.getElementById('wish-form');
 const notesContainer = document.getElementById('corkboard-notes');
 let wishes = [];
+let isDraggingAnyNote = false;
+let needsRefreshAfterDrag = false;
+let isDatabaseListenerRegistered = false;
+
+// Default corkboard post-it notes
+const defaultWishes = [
+    {
+        name: "Khoi Nguyen",
+        text: isVietnamese ? "Toi khong ngại nhận thêm lời chúc ở đây đâu nhá" : "Congrats on your graduation! Wish you all the best on your next journey!",
+        color: "yellow",
+        rot: -4,
+        left: 40,
+        top: 30,
+        creatorId: "system"
+    },
+];
 
 function loadWishes() {
     if (!notesContainer) return;
-    notesContainer.innerHTML = '';
 
-    // Default corkboard post-it notes
-    const defaultWishes = [
-        {
-            name: "Khoi Nguyen",
-            text: isVietnamese ? "Toi khong ngại nhận thêm lời chúc ở đây đâu nhá" : "Congrats on your graduation! Wish you all the best on your next journey!",
-            color: "yellow",
-            rot: -4,
-            left: 40,
-            top: 30
-        },
-    ];
+    if (isFirebaseEnabled) {
+        if (!isDatabaseListenerRegistered) {
+            isDatabaseListenerRegistered = true;
+            database.ref('wishes').on('value', (snapshot) => {
+                const data = snapshot.val();
+                wishes = [];
+                if (data) {
+                    Object.keys(data).forEach(id => {
+                        wishes.push({
+                            id: id,
+                            ...data[id]
+                        });
+                    });
+                } else {
+                    // Seed database with default wish if it's completely empty
+                    const defaultSeed = {
+                        name: "Khoi Nguyen",
+                        text: isVietnamese ? "Toi khong ngại nhận thêm lời chúc ở đây đâu nhá" : "Congrats on your graduation! Wish you all the best on your next journey!",
+                        color: "yellow",
+                        rot: -4,
+                        left: 40,
+                        top: 30,
+                        creatorId: "system",
+                        createdAt: Date.now()
+                    };
+                    database.ref('wishes').push(defaultSeed);
+                    return; // The value listener will fire again once pushed
+                }
 
-    const stored = localStorage.getItem('graduation_wishes');
-    if (stored) {
-        wishes = JSON.parse(stored);
-        // Migrate old defaults to the single new default wish with "Khoi Nguyen" as name
-        const isOldThreeDefaults = wishes.length === 3 && wishes.some(w => w.name === "Khoi Nguyen" || w.name === "");
-        const isOldSingleDefaultEmptyName = wishes.length === 1 &&
-            (wishes[0].name === "" || wishes[0].name === undefined) &&
-            (wishes[0].text.includes("Toi khong ngại") || wishes[0].text.includes("Congrats on your graduation"));
-        const isOldDefaultPosition = wishes.length === 1 &&
-            wishes[0].name === "Khoi Nguyen" &&
-            wishes[0].left === 8 &&
-            wishes[0].top === 10;
+                if (!isDraggingAnyNote) {
+                    renderWishesOnBoard();
+                } else {
+                    needsRefreshAfterDrag = true;
+                }
+            });
+        } else {
+            // If listener is already active (e.g. translation toggle), just re-render current data
+            renderWishesOnBoard();
+        }
+    } else {
+        // Fallback to localStorage
+        notesContainer.innerHTML = '';
+        const stored = localStorage.getItem('graduation_wishes');
+        if (stored) {
+            wishes = JSON.parse(stored);
+            const isOldThreeDefaults = wishes.length === 3 && wishes.some(w => w.name === "Khoi Nguyen" || w.name === "");
+            const isOldSingleDefaultEmptyName = wishes.length === 1 &&
+                (wishes[0].name === "" || wishes[0].name === undefined) &&
+                (wishes[0].text.includes("Toi khong ngại") || wishes[0].text.includes("Congrats on your graduation"));
+            const isOldDefaultPosition = wishes.length === 1 &&
+                wishes[0].name === "Khoi Nguyen" &&
+                wishes[0].left === 8 &&
+                wishes[0].top === 10;
 
-        if (isOldThreeDefaults || isOldSingleDefaultEmptyName || isOldDefaultPosition) {
+            if (isOldThreeDefaults || isOldSingleDefaultEmptyName || isOldDefaultPosition) {
+                wishes = defaultWishes;
+                localStorage.setItem('graduation_wishes', JSON.stringify(wishes));
+            }
+        } else {
             wishes = defaultWishes;
             localStorage.setItem('graduation_wishes', JSON.stringify(wishes));
         }
-    } else {
-        wishes = defaultWishes;
-        localStorage.setItem('graduation_wishes', JSON.stringify(wishes));
+        renderWishesOnBoard();
     }
+}
+
+function renderWishesOnBoard() {
+    if (!notesContainer) return;
+    notesContainer.innerHTML = '';
+
     wishes.forEach((w, index) => {
-        addNoteToBoard(w.name, w.text, w.color, w.rot, w.left, w.top, index);
+        const id = w.id !== undefined ? w.id : index;
+        addNoteToBoard(w.name, w.text, w.color, w.rot, w.left, w.top, id, w.creatorId);
     });
 }
 
-function addNoteToBoard(name, text, color, rot, left, top, index) {
+function addNoteToBoard(name, text, color, rot, left, top, id, creatorId) {
     if (!notesContainer) return;
 
     const note = document.createElement('div');
@@ -461,20 +563,36 @@ function addNoteToBoard(name, text, color, rot, left, top, index) {
 
     note.appendChild(innerWrapper);
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'delete-note-btn';
-    deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-    deleteBtn.setAttribute('title', isVietnamese ? 'Xóa lời chúc' : 'Delete wish');
-    deleteBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (confirm(isVietnamese ? 'Bạn có chắc chắn muốn xóa lời chúc này?' : 'Are you sure you want to delete this wish?')) {
-            wishes.splice(index, 1);
-            localStorage.setItem('graduation_wishes', JSON.stringify(wishes));
-            loadWishes();
-        }
-    });
-    note.appendChild(deleteBtn);
+    const isOwner = creatorId && creatorId === myCreatorId;
+    const canManage = isOwner || isAdminMode;
 
+    if (canManage) {
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'delete-note-btn';
+        deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+        deleteBtn.setAttribute('title', isVietnamese ? 'Xóa lời chúc' : 'Delete wish');
+        deleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (confirm(isVietnamese ? 'Bạn có chắc chắn muốn xóa lời chúc này?' : 'Are you sure you want to delete this wish?')) {
+                if (isFirebaseEnabled) {
+                    database.ref('wishes/' + id).remove()
+                        .then(() => {
+                            showToast(isVietnamese ? "Đã xóa lời chúc!" : "Wish deleted!");
+                        })
+                        .catch(err => {
+                            console.error("Delete failed: ", err);
+                            showToast(isVietnamese ? "Lỗi khi xóa!" : "Failed to delete!");
+                        });
+                } else {
+                    wishes.splice(id, 1);
+                    localStorage.setItem('graduation_wishes', JSON.stringify(wishes));
+                    loadWishes();
+                    showToast(isVietnamese ? "Đã xóa lời chúc!" : "Wish deleted!");
+                }
+            }
+        });
+        note.appendChild(deleteBtn);
+    }
 
     note.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -485,12 +603,14 @@ function addNoteToBoard(name, text, color, rot, left, top, index) {
         openLightbox(null, text, name);
     });
 
-    makeElementDraggable(note, index);
+    if (canManage) {
+        makeElementDraggable(note, id);
+    }
 
     notesContainer.appendChild(note);
 }
 
-function makeElementDraggable(el, index) {
+function makeElementDraggable(el, id) {
     let startX = 0, startY = 0;
     let startLeft = 0, startTop = 0;
     let isDragging = false;
@@ -540,6 +660,7 @@ function makeElementDraggable(el, index) {
     function startDrag() {
         el.style.transition = 'none';
         el.style.zIndex = '1000';
+        isDraggingAnyNote = true;
     }
 
     function elementDrag(e) {
@@ -606,26 +727,43 @@ function makeElementDraggable(el, index) {
 
         el.style.transition = '';
         el.style.zIndex = Math.floor(Math.random() * 10) + 10;
+        isDraggingAnyNote = false;
 
         if (isDragging) {
             el.setAttribute('data-dragged', 'true');
-            if (wishes[index]) {
-                const finalLeft = parseFloat(el.style.left);
-                const finalTop = parseFloat(el.style.top);
-                const finalRot = Math.floor(Math.random() * 12 - 6);
+            const finalLeft = parseFloat(el.style.left);
+            const finalTop = parseFloat(el.style.top);
+            const finalRot = Math.floor(Math.random() * 12 - 6);
 
-                el.style.transform = `rotate(${finalRot}deg)`;
-                el.style.setProperty('--rot', `${finalRot}deg`);
+            el.style.transform = `rotate(${finalRot}deg)`;
+            el.style.setProperty('--rot', `${finalRot}deg`);
 
-                wishes[index].left = finalLeft;
-                wishes[index].top = finalTop;
-                wishes[index].rot = finalRot;
-                localStorage.setItem('graduation_wishes', JSON.stringify(wishes));
+            if (isFirebaseEnabled) {
+                database.ref('wishes/' + id).update({
+                    left: finalLeft,
+                    top: finalTop,
+                    rot: finalRot
+                }).catch(err => {
+                    console.error("Update position failed: ", err);
+                });
+            } else {
+                if (wishes[id]) {
+                    wishes[id].left = finalLeft;
+                    wishes[id].top = finalTop;
+                    wishes[id].rot = finalRot;
+                    localStorage.setItem('graduation_wishes', JSON.stringify(wishes));
+                }
             }
         } else {
             // Restore original rotation on simple tap
             const origRot = el.style.getPropertyValue('--rot') || '0deg';
             el.style.transform = `rotate(${origRot})`;
+        }
+
+        // Trigger deferred re-render if another user made updates while dragging
+        if (needsRefreshAfterDrag) {
+            needsRefreshAfterDrag = false;
+            renderWishesOnBoard();
         }
     }
 }
@@ -711,14 +849,32 @@ if (wishForm) {
             color: colorVal,
             rot: rot,
             left: left,
-            top: top
+            top: top,
+            creatorId: myCreatorId,
+            createdAt: Date.now()
         };
 
-        wishes.push(newWish);
-        localStorage.setItem('graduation_wishes', JSON.stringify(wishes));
+        if (isFirebaseEnabled) {
+            database.ref('wishes').push(newWish)
+                .then(() => {
+                    // Confetti and toast are triggered on successful push
+                    triggerConfetti();
+                    showToast(isVietnamese ? "Đã ghim lời chúc của bạn!" : "Your wish has been pinned!");
+                })
+                .catch(err => {
+                    console.error("Firebase submit failed: ", err);
+                    showToast(isVietnamese ? "Lỗi khi ghim lời chúc!" : "Failed to pin wish!");
+                });
+        } else {
+            wishes.push(newWish);
+            localStorage.setItem('graduation_wishes', JSON.stringify(wishes));
 
-        const newIndex = wishes.length - 1;
-        addNoteToBoard(nameVal, textVal, colorVal, rot, left, top, newIndex);
+            const newIndex = wishes.length - 1;
+            addNoteToBoard(nameVal, textVal, colorVal, rot, left, top, newIndex, myCreatorId);
+
+            triggerConfetti();
+            showToast(isVietnamese ? "Đã ghim lời chúc của bạn!" : "Your wish has been pinned!");
+        }
 
         // Clear input fields
         document.getElementById('wish-text').value = '';
@@ -731,11 +887,9 @@ if (wishForm) {
         if (wishModal) {
             wishModal.classList.remove('show');
         }
-
-        triggerConfetti();
-        showToast(isVietnamese ? "Đã ghim lời chúc của bạn!" : "Your wish has been pinned!");
     });
 }
+
 
 // Countdown Timer logic targeting November 1st, 2026
 function initCountdown() {
