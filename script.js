@@ -677,8 +677,33 @@ if (wishForm) {
 
         // Generate random rotation and coordinates to simulate physical pinning on the full-width board
         const rot = Math.floor(Math.random() * 16 - 8);
-        const left = Math.floor(Math.random() * 90 + 2); // Spans 2% to 92% of width
-        const top = Math.floor(Math.random() * 83 + 2);  // Spans 2% to 85% of height
+        
+        // Dynamically compute boundaries to let notes go right next to the edges without overflowing
+        let left = Math.floor(Math.random() * 80 + 5);
+        let top = Math.floor(Math.random() * 65 + 5);
+        if (notesContainer) {
+            const corkRect = notesContainer.getBoundingClientRect();
+            if (corkRect.width > 0 && corkRect.height > 0) {
+                const isMobile = window.innerWidth <= 768;
+                const noteWidth = isMobile ? 100 : 120;
+                const noteHeight = isMobile ? 110 : 130;
+
+                const noteWidthPct = (noteWidth / corkRect.width) * 100;
+                const noteHeightPct = (noteHeight / corkRect.height) * 100;
+
+                const minLeft = 1;
+                const maxLeft = 100 - noteWidthPct - 1;
+                const minTop = 1;
+                const maxTop = 100 - noteHeightPct - 1;
+
+                if (maxLeft > minLeft) {
+                    left = parseFloat((Math.random() * (maxLeft - minLeft) + minLeft).toFixed(2));
+                }
+                if (maxTop > minTop) {
+                    top = parseFloat((Math.random() * (maxTop - minTop) + minTop).toFixed(2));
+                }
+            }
+        }
 
         const newWish = {
             name: nameVal,
