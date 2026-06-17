@@ -30,8 +30,8 @@ body::before {
 
 .lang-toggle {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    bottom: 20px;
+    left: 20px;
     z-index: 100;
 }
 
@@ -537,11 +537,11 @@ section {
 .scrap-pin {
     position: absolute;
     top: -3%;
-    right: 7%;
+    left: 7%;
     width: 50px;
     --rot: -50deg;
     transform: rotate(var(--rot));
-    animation: swingInRight 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, scrapBounce2 2.5s infinite 2.1s;
+    animation: swingInLeft 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, scrapBounce2 2.5s infinite 2.1s;
 }
 
 .scrap-speaker2 {
@@ -554,9 +554,12 @@ section {
     animation: swingInLeft 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, scrapBounce2 2.5s infinite 2.0s;
 }
 
-body.content-revealed .scrap-hand,
-body.content-revealed .scrap-pin {
+body.content-revealed .scrap-hand {
     animation: swingOutRight 0.8s ease-in forwards !important;
+}
+
+body.content-revealed .scrap-pin {
+    animation: swingOutLeft 0.8s ease-in forwards !important;
 }
 
 body.content-revealed .scrap-speaker2 {
@@ -764,9 +767,15 @@ body.content-revealed .scrap-speaker2 {
         left: -10%;
     }
 
+    .lang-toggle {
+        bottom: 15px;
+        left: 15px;
+    }
+
     .scrap-pin {
         width: 40px;
-        right: 15%;
+        left: 15%;
+        right: auto;
     }
 }
 
