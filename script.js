@@ -1,13 +1,14 @@
 // Firebase Configuration - Replace with your own project config values to enable global real-time synchronization.
 // If left as default, the guestbook will gracefully fall back to storing wishes in localStorage.
 const firebaseConfig = {
-    apiKey: "YOUR_FIREBASE_API_KEY",
-    authDomain: "YOUR_FIREBASE_AUTH_DOMAIN",
-    databaseURL: "YOUR_FIREBASE_DATABASE_URL",
-    projectId: "YOUR_FIREBASE_PROJECT_ID",
-    storageBucket: "YOUR_FIREBASE_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_FIREBASE_MESSAGING_SENDER_ID",
-    appId: "YOUR_FIREBASE_APP_ID"
+    apiKey: "AIzaSyCcdNZbfMyLF-5ofAoYYJmFrSr8LuOucUA",
+    authDomain: "gra-invitation.firebaseapp.com",
+    databaseURL: "https://gra-invitation-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "gra-invitation",
+    storageBucket: "gra-invitation.firebasestorage.app",
+    messagingSenderId: "49333198003",
+    appId: "1:49333198003:web:ff58189480b5c80e1b64c6",
+    measurementId: "G-KPXVYL0NW5"
 };
 
 // Admin Passphrase for moderation. Customize this passphrase.
