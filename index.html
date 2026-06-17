@@ -44,13 +44,6 @@
 
     <!-- Music Player Toggle -->
     <div class="music-toggle-container">
-        <!-- Tiny Music Popup Player -->
-        <div id="music-popup" class="music-popup">
-            <iframe id="soundcloud-iframe" width="100%" height="166" scrolling="no" frameborder="no"
-                allow="autoplay; encrypted-media"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2253944465&color=%23d97706&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
-            </iframe>
-        </div>
         <button id="music-btn" class="music-btn" title="Play Music">
             <i class="fa-solid fa-compact-disc"></i>
         </button>
@@ -526,76 +519,16 @@
                     class="absolute top-0 left-12 w-24 h-5 bg-yellow-100/60 -rotate-2 shadow-sm border-b border-yellow-200/20 backdrop-blur-[1px]">
                 </div>
 
-                <h2 data-vi="Lưu Bút & Lời Chúc" data-en="Graduation Guestbook">Lưu Bút & Lời Chúc</h2>
                 <p class="text-center text-gray-600 mb-8 max-w-[60ch] mx-auto"
-                    data-vi="Để lại một vài dòng yêu thương hoặc lời nhắn nhủ thân tình gửi đến Khôi Nguyên bạn nhé. Tấm thiệp xinh xắn của bạn sẽ được ghim thẳng lên bảng lưu bút!"
-                    data-en="Leave a few loving words or a friendly message to send to Khôi Nguyên. Your cute note will be pinned straight onto the guestbook board!">
-                    Để lại một vài dòng yêu thương hoặc lời nhắn nhủ thân tình gửi đến Khôi Nguyên bạn nhé. Tấm thiệp
-                    xinh xắn của bạn sẽ được ghim thẳng lên bảng lưu bút!
+                    data-vi="Nhấp vào bất kỳ khoảng trống nào trên bảng lưu bút để ghim lời chúc của bạn gửi đến Khôi Nguyên nhé!"
+                    data-en="Click anywhere on the corkboard to pin your wish note to Khôi Nguyên!">
+                    Nhấp vào bất kỳ khoảng trống nào trên bảng lưu bút để ghim lời chúc của bạn gửi đến Khôi Nguyên nhé!
                 </p>
 
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                    <!-- Wish Form Card -->
-                    <div
-                        class="wish-form-card p-6 rounded-md bg-white border border-gray-200 shadow-sm relative flex flex-col justify-between">
-                        <form id="wish-form" class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1 text-left"
-                                    data-vi="Tên của bạn (Tùy chọn)" data-en="Your Name (Optional)">Tên của bạn (Tùy
-                                    chọn)</label>
-                                <input type="text" id="wish-name" maxlength="20"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gold text-sm"
-                                    data-vi-placeholder="Nhập tên hoặc để trống để ẩn danh..."
-                                    data-en-placeholder="Enter name or leave blank for anonymous...">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1 text-left"
-                                    data-vi="Lời chúc *" data-en="Your Wish *">Lời chúc *</label>
-                                <textarea id="wish-text" required rows="4"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gold text-sm"
-                                    data-vi-placeholder="Gửi lời chúc tốt đẹp nhất..."
-                                    data-en-placeholder="Write your sweet message..."></textarea>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-1 text-left"
-                                    data-vi="Chọn màu thiệp" data-en="Choose Note Color">Chọn màu thiệp</label>
-                                <div class="flex gap-3 mt-2">
-                                    <label class="color-radio-label cursor-pointer">
-                                        <input type="radio" name="note-color" value="yellow" checked class="sr-only">
-                                        <span
-                                            class="color-radio-dot bg-[#fefdb3] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition"></span>
-                                    </label>
-                                    <label class="color-radio-label cursor-pointer">
-                                        <input type="radio" name="note-color" value="pink" class="sr-only">
-                                        <span
-                                            class="color-radio-dot bg-[#ffd1d7] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition"></span>
-                                    </label>
-                                    <label class="color-radio-label cursor-pointer">
-                                        <input type="radio" name="note-color" value="blue" class="sr-only">
-                                        <span
-                                            class="color-radio-dot bg-[#c6e1ff] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition"></span>
-                                    </label>
-                                    <label class="color-radio-label cursor-pointer">
-                                        <input type="radio" name="note-color" value="green" class="sr-only">
-                                        <span
-                                            class="color-radio-dot bg-[#cdfad0] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <button type="submit"
-                                class="w-full bg-navy hover:bg-navy/90 text-white py-3 rounded-md transition font-medium tracking-wide shadow-md hover:-translate-y-[1px] active:translate-y-0 duration-200 mt-2"
-                                data-vi="Ghim Lời Chúc" data-en="Pin Wish">
-                                <i class="fa-solid fa-thumbtack mr-2"></i><span>Ghim Lời Chúc</span>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Corkboard Area -->
-                    <div
-                        class="lg:col-span-3 corkboard relative rounded-xl p-6 min-h-[360px] md:min-h-[450px] flex items-center justify-center">
-                        <div id="corkboard-notes" class="corkboard-notes-grid relative w-full h-full min-h-[300px]">
-                            <!-- Sticky wishes loaded here dynamically -->
-                        </div>
+                <!-- Corkboard Area (Full Width) -->
+                <div class="corkboard relative rounded-xl p-6 min-h-[400px] md:min-h-[500px] w-full flex items-center justify-center">
+                    <div id="corkboard-notes" class="corkboard-notes-grid relative w-full h-full min-h-[350px]">
+                        <!-- Sticky wishes loaded here dynamically -->
                     </div>
                 </div>
             </div>
@@ -628,6 +561,75 @@
         </div>
     </div>
 
+    <!-- Wish Form Modal -->
+    <div id="wish-modal" class="modal">
+        <div class="wish-modal-content relative bg-white p-8 rounded-2xl max-w-xl w-[90%] shadow-2xl border border-amber-100 transform scale-95 opacity-0 transition-all duration-300 ease-out">
+            <!-- Stitched tape decoration -->
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-28 h-6 bg-yellow-100/60 -rotate-2 shadow-sm border-b border-yellow-200/20 backdrop-blur-[1px]"></div>
+            <span id="close-wish-btn" class="close-btn absolute top-2 right-4 text-gray-700 text-3xl font-bold cursor-pointer hover:text-black">&times;</span>
+            
+            <h3 class="text-center font-serif text-lg italic text-gold mb-6" data-vi="✏️ Gửi lời chúc đến Khôi Nguyên" data-en="✏️ Send a wish to Khôi Nguyên">✏️ Gửi lời chúc đến Khôi Nguyên</h3>
+            
+            <form id="wish-form" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5 text-left"
+                        data-vi="Tên của bạn (Tùy chọn)" data-en="Your Name (Optional)">Tên của bạn (Tùy chọn)</label>
+                    <input type="text" id="wish-name" maxlength="20"
+                        class="w-full px-4 py-3 bg-amber-50/10 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold transition duration-200 text-sm placeholder-gray-400"
+                        data-vi-placeholder="Nhập tên hoặc để trống để ẩn danh..."
+                        data-en-placeholder="Enter name or leave blank for anonymous...">
+                </div>
+                
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5 text-left"
+                        data-vi="Lời chúc *" data-en="Your Wish *">Lời chúc *</label>
+                    <textarea id="wish-text" required rows="4"
+                        class="w-full px-4 py-3 bg-amber-50/10 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-1 focus:ring-gold focus:border-gold transition duration-200 text-sm placeholder-gray-400"
+                        data-vi-placeholder="Gửi những lời chúc tốt đẹp nhất..."
+                        data-en-placeholder="Write your sweet message..."></textarea>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 pt-2">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 text-left"
+                            data-vi="Chọn màu thiệp" data-en="Choose Note Color">Chọn màu thiệp</label>
+                        <div class="flex gap-3 mt-2">
+                            <label class="color-radio-label cursor-pointer">
+                                <input type="radio" name="note-color" value="yellow" checked class="sr-only peer">
+                                <span
+                                    class="color-radio-dot bg-[#fefdb3] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition peer-checked:ring-2 peer-checked:ring-gold peer-checked:ring-offset-2 peer-checked:scale-110"></span>
+                            </label>
+                            <label class="color-radio-label cursor-pointer">
+                                <input type="radio" name="note-color" value="pink" class="sr-only peer">
+                                <span
+                                    class="color-radio-dot bg-[#ffd1d7] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition peer-checked:ring-2 peer-checked:ring-gold peer-checked:ring-offset-2 peer-checked:scale-110"></span>
+                            </label>
+                            <label class="color-radio-label cursor-pointer">
+                                <input type="radio" name="note-color" value="blue" class="sr-only peer">
+                                <span
+                                    class="color-radio-dot bg-[#c6e1ff] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition peer-checked:ring-2 peer-checked:ring-gold peer-checked:ring-offset-2 peer-checked:scale-110"></span>
+                            </label>
+                            <label class="color-radio-label cursor-pointer">
+                                <input type="radio" name="note-color" value="green" class="sr-only peer">
+                                <span
+                                    class="color-radio-dot bg-[#cdfad0] border border-gray-300 rounded-full w-8 h-8 block hover:scale-105 active:scale-95 transition peer-checked:ring-2 peer-checked:ring-gold peer-checked:ring-offset-2 peer-checked:scale-110"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="sm:w-1/2">
+                        <button type="submit"
+                            class="w-full bg-navy hover:bg-navy/90 text-white py-3.5 px-6 rounded-xl transition-all duration-300 font-semibold text-sm tracking-wide shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2"
+                            data-vi="Ghim Lời Chúc" data-en="Pin Wish">
+                            <i class="fa-solid fa-thumbtack"></i>
+                            <span>Ghim Lời Chúc</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Image Lightbox Modal -->
     <div id="image-lightbox" class="lightbox-modal">
         <span class="lightbox-close">&times;</span>
@@ -644,7 +646,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://w.soundcloud.com/player/api.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js?v=1.0.7"></script>
 </body>

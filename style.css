@@ -1166,6 +1166,11 @@ body.content-revealed .scrap-speaker2 {
     opacity: 1;
 }
 
+.modal.show .wish-modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
 .modal-content {
     background-color: #f4f0e6;
     padding: 40px 10px 10px 10px;
@@ -1273,44 +1278,6 @@ body.content-revealed .scrap-speaker2 {
     transform: translateX(0);
 }
 
-/* Music Popup styles */
-.music-popup {
-    position: absolute;
-    bottom: 60px;
-    right: 0;
-    width: 320px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1.5px solid #2c2c2c;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    padding: 8px;
-    z-index: 110;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transform: translateY(15px) scale(0.9);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.music-popup.show {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.music-popup iframe {
-    display: block;
-    border-radius: 8px;
-    width: 100%;
-}
-
-@media (max-width: 480px) {
-    .music-popup {
-        width: 280px;
-        bottom: 55px;
-    }
-}
 
 /* Action Mini Buttons (Location Card) */
 .card-actions {
@@ -1489,6 +1456,7 @@ body.content-revealed .scrap-speaker2 {
     background-position: 0 0, 5px 5px;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .corkboard::before {

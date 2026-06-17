@@ -1,9 +1,8 @@
 let isVietnamese = true;
 
-// Background Music Player & SoundCloud integration
-let soundcloudWidget = null;
+// Background Music Player (HTML5 Audio)
+let bgMusic = null;
 let isPlaying = false;
-let bgMusicFallback = null;
 let musicInitialized = false;
 
 function updateTooltip() {
@@ -21,45 +20,13 @@ function initMusic() {
     if (musicInitialized) return;
     musicInitialized = true;
 
-    const iframe = document.getElementById('soundcloud-iframe');
-    if (iframe && window.SC) {
-        try {
-            soundcloudWidget = SC.Widget(iframe);
-
-            soundcloudWidget.bind(SC.Widget.Events.PLAY, () => {
-                isPlaying = true;
-                if (musicBtn) {
-                    musicBtn.classList.add('playing', 'active');
-                    musicBtn.setAttribute('title', isVietnamese ? 'Tạm dừng' : 'Pause');
-                }
-                updateTooltip();
-            });
-
-            soundcloudWidget.bind(SC.Widget.Events.PAUSE, () => {
-                isPlaying = false;
-                if (musicBtn) musicBtn.classList.remove('playing');
-                updateTooltip();
-            });
-
-            soundcloudWidget.bind(SC.Widget.Events.FINISH, () => {
-                isPlaying = false;
-                if (musicBtn) musicBtn.classList.remove('playing');
-                updateTooltip();
-            });
-            return;
-        } catch (e) {
-            console.warn("SoundCloud Widget bind failed, using fallback music player:", e);
-        }
-    }
-
-    // Fallback: Native Audio Player
     const playlist = [
         'https://archive.org/download/78_2283-Dream-a-little-dream-of-me/2283-Dream-a-little-dream-of-me.mp3'
     ];
-    bgMusicFallback = new Audio(playlist[0]);
-    bgMusicFallback.loop = true;
+    bgMusic = new Audio(playlist[0]);
+    bgMusic.loop = true;
 
-    bgMusicFallback.addEventListener('play', () => {
+    bgMusic.addEventListener('play', () => {
         isPlaying = true;
         if (musicBtn) {
             musicBtn.classList.add('playing', 'active');
@@ -68,9 +35,9 @@ function initMusic() {
         updateTooltip();
     });
 
-    bgMusicFallback.addEventListener('pause', () => {
+    bgMusic.addEventListener('pause', () => {
         isPlaying = false;
-        if (musicBtn) musicBtn.classList.remove('playing');
+        if (musicBtn) musicBtn.classList.remove('playing', 'active');
         updateTooltip();
     });
 }
@@ -337,66 +304,28 @@ const musicBtn = document.getElementById('music-btn');
 const musicTooltip = document.querySelector('.music-tooltip');
 
 function playMusic() {
-    if (soundcloudWidget) {
-        try {
-            soundcloudWidget.play();
-        } catch (e) {
-            console.warn("SoundCloud Widget play failed, using fallback:", e);
-            playFallbackMusic();
-        }
-    } else {
-        playFallbackMusic();
-    }
-}
-
-function playFallbackMusic() {
-    if (bgMusicFallback) {
-        bgMusicFallback.play().catch(err => {
+    if (bgMusic) {
+        bgMusic.play().catch(err => {
             console.log("Audio playback blocked or failed:", err);
         });
     }
 }
 
 function pauseMusic() {
-    if (soundcloudWidget) {
-        try {
-            soundcloudWidget.pause();
-        } catch (e) {
-            console.warn("SoundCloud Widget pause failed, using fallback:", e);
-            pauseFallbackMusic();
-        }
-    } else {
-        pauseFallbackMusic();
+    if (bgMusic) {
+        bgMusic.pause();
     }
 }
 
-function pauseFallbackMusic() {
-    if (bgMusicFallback) {
-        bgMusicFallback.pause();
-    }
-}
-
-const musicPopup = document.getElementById('music-popup');
-
-if (musicBtn && musicPopup) {
+if (musicBtn) {
     musicBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        musicPopup.classList.toggle('show');
-    });
-
-    // Close the music popup when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.music-toggle-container')) {
-            musicPopup.classList.remove('show');
-        }
-    });
-
-    // Close on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            musicPopup.classList.remove('show');
+        if (bgMusic && !bgMusic.paused) {
+            pauseMusic();
+        } else {
+            playMusic();
         }
     });
 }
@@ -701,6 +630,40 @@ function makeElementDraggable(el, index) {
     }
 }
 
+// Guestbook modal and submission controls
+const wishModal = document.getElementById('wish-modal');
+const closeWishBtn = document.getElementById('close-wish-btn');
+const corkboard = document.querySelector('.corkboard');
+
+if (corkboard && wishModal) {
+    corkboard.addEventListener('click', (e) => {
+        // Ignore clicks on buttons (like the delete note button) or note elements
+        if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.wish-note')) return;
+
+        // Open wish modal
+        wishModal.classList.add('show');
+    });
+}
+
+if (wishModal && closeWishBtn) {
+    closeWishBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        wishModal.classList.remove('show');
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === wishModal) {
+            wishModal.classList.remove('show');
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            wishModal.classList.remove('show');
+        }
+    });
+}
+
 if (wishForm) {
     wishForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -712,10 +675,10 @@ if (wishForm) {
 
         if (textVal === '') return;
 
-        // Generate random rotation and coordinates to simulate physical pinning
+        // Generate random rotation and coordinates to simulate physical pinning on the full-width board
         const rot = Math.floor(Math.random() * 16 - 8);
-        const left = Math.floor(Math.random() * 60 + 5);
-        const top = Math.floor(Math.random() * 55 + 5);
+        const left = Math.floor(Math.random() * 80 + 5); // Spans 5% to 85% of width
+        const top = Math.floor(Math.random() * 65 + 5);  // Spans 5% to 70% of height
 
         const newWish = {
             name: nameVal,
@@ -737,6 +700,11 @@ if (wishForm) {
         if (!guestName) {
             const nameInput = document.getElementById('wish-name');
             if (nameInput) nameInput.value = '';
+        }
+
+        // Hide wish modal
+        if (wishModal) {
+            wishModal.classList.remove('show');
         }
 
         triggerConfetti();
