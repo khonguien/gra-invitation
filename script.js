@@ -677,7 +677,7 @@ if (wishForm) {
 
         // Generate random rotation and coordinates to simulate physical pinning on the full-width board
         const rot = Math.floor(Math.random() * 16 - 8);
-        
+
         // Dynamically compute boundaries to let notes go right next to the edges without overflowing
         let left = Math.floor(Math.random() * 80 + 5);
         let top = Math.floor(Math.random() * 65 + 5);
