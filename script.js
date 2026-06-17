@@ -55,14 +55,32 @@ let bgMusic = null;
 let isPlaying = false;
 let musicInitialized = false;
 
+// Background Music Player DOM controls
+const musicBtn = document.getElementById('music-btn');
+const playPauseBtn = document.getElementById('play-pause-btn');
+const musicTooltip = document.querySelector('.music-tooltip');
+const musicContainer = document.querySelector('.music-toggle-container');
+
 function updateTooltip() {
-    const musicTooltip = document.querySelector('.music-tooltip');
     if (musicTooltip) {
         if (isPlaying) {
             musicTooltip.textContent = isVietnamese ? 'Tạm dừng nhạc ⏸️' : 'Pause Music ⏸️';
         } else {
             musicTooltip.textContent = isVietnamese ? 'Phát nhạc 🎵' : 'Play Music 🎵';
         }
+    }
+    // Update title attributes for accessibility and tooltips
+    if (musicBtn) {
+        musicBtn.setAttribute('title', isPlaying 
+            ? (isVietnamese ? 'Tạm dừng nhạc' : 'Pause Music') 
+            : (isVietnamese ? 'Phát nhạc' : 'Play Music')
+        );
+    }
+    if (playPauseBtn) {
+        playPauseBtn.setAttribute('title', isPlaying 
+            ? (isVietnamese ? 'Tạm dừng nhạc' : 'Pause Music') 
+            : (isVietnamese ? 'Phát nhạc' : 'Play Music')
+        );
     }
 }
 
@@ -80,14 +98,35 @@ function initMusic() {
         isPlaying = true;
         if (musicBtn) {
             musicBtn.classList.add('playing', 'active');
-            musicBtn.setAttribute('title', isVietnamese ? 'Tạm dừng' : 'Pause');
+        }
+        if (playPauseBtn) {
+            playPauseBtn.classList.add('playing');
+            const icon = playPauseBtn.querySelector('i');
+            if (icon) {
+                icon.className = 'fa-solid fa-pause';
+            }
+        }
+        if (musicContainer) {
+            musicContainer.classList.add('functioning');
         }
         updateTooltip();
     });
 
     bgMusic.addEventListener('pause', () => {
         isPlaying = false;
-        if (musicBtn) musicBtn.classList.remove('playing', 'active');
+        if (musicBtn) {
+            musicBtn.classList.remove('playing', 'active');
+        }
+        if (playPauseBtn) {
+            playPauseBtn.classList.remove('playing');
+            const icon = playPauseBtn.querySelector('i');
+            if (icon) {
+                icon.className = 'fa-solid fa-play';
+            }
+        }
+        if (musicContainer) {
+            musicContainer.classList.remove('functioning');
+        }
         updateTooltip();
     });
 }
@@ -350,9 +389,6 @@ END:VCALENDAR`;
 }
 
 // Background Music Player controls
-const musicBtn = document.getElementById('music-btn');
-const musicTooltip = document.querySelector('.music-tooltip');
-
 function playMusic() {
     if (bgMusic) {
         bgMusic.play().catch(err => {
@@ -369,6 +405,19 @@ function pauseMusic() {
 
 if (musicBtn) {
     musicBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (bgMusic && !bgMusic.paused) {
+            pauseMusic();
+        } else {
+            playMusic();
+        }
+    });
+}
+
+if (playPauseBtn) {
+    playPauseBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
