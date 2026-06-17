@@ -506,9 +506,9 @@ section {
 }
 
 .scrap-hand {
-    top: 38%;
-    right: 12%;
-    width: 150px;
+    top: 50%;
+    right: 1%;
+    width: 250px;
     --rot: -15deg;
     transform: rotate(var(--rot));
     z-index: 6;
@@ -517,7 +517,7 @@ section {
 
 .scrap-speaker {
     bottom: -2%;
-    right: -5%;
+    left: 60%;
     width: 200px;
     transform: rotate(15deg);
     animation: none;
