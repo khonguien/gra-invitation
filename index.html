@@ -30,7 +30,7 @@
         }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=1.0.8">
+    <link rel="stylesheet" href="style.css?v=1.0.14">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap"
         rel="stylesheet">
@@ -39,7 +39,8 @@
 <body>
     <!-- Language Toggle -->
     <div class="lang-toggle">
-        <img src="https://i.pinimg.com/originals/21/40/7e/21407e519d913ffe4b6cebc194642776.png" class="scrap-pin" alt="Pin">
+        <img src="https://i.pinimg.com/originals/21/40/7e/21407e519d913ffe4b6cebc194642776.png" class="scrap-pin"
+            alt="Pin">
         <button id="lang-btn">EN</button>
     </div>
 
@@ -109,12 +110,10 @@
 
         <div class="hero-bottom-text">
             <p class="hero-date">01 . 11 . 2026</p>
-            <p class="hero-time">9:00</p>
-            <p class="hero-location" data-vi="Học mãi cũng ra trường rồi" data-en="Finally graduated!">Học mãi cũng ra
-                trường rồi</p>
+            <p class="hero-time">9:00 AM</p>
 
             <!-- Countdown Utility -->
-            <div class="flex justify-center gap-4 md:gap-8 my-6 fade-in">
+            <div class="flex justify-center gap-4 md:gap-8 my-6 fade-in" style="display: none;">
                 <div class="flex flex-col">
                     <div class="w-16 h-16 bg-white/30 backdrop-blur-md rounded-lg flex items-center justify-center text-navy text-2xl font-bold"
                         id="cd-days">00</div>
@@ -135,9 +134,12 @@
                 </div>
             </div>
 
+            <p class="hero-location" data-vi="Học mãi cũng ra trường rồi" data-en="Finally graduated!">Học mãi cũng ra
+                trường rồi</p>
+
             <!-- Celebrate Button -->
             <button id="celebrate-btn" class="celebrate-btn flex items-center gap-2 mb-6" data-vi="Lổ 🎉"
-                data-en="Celebrate 🎉">
+                data-en="Celebrate 🎉" style="display: none;">
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
                 <span>Lổ 🎉</span>
             </button>
@@ -152,13 +154,12 @@
                 <span data-vi="tới lễ tốt nghiệp của Khôi Nguyên" data-en="to Khôi Nguyên's graduation ceremony">tới lễ
                     tốt nghiệp của Khôi Nguyên</span>
             </div>
+        </div>
 
-            <!-- Click anywhere indicator -->
-            <div class="tap-reveal-hint mt-8 animate-pulse text-sm text-gray-500 font-medium"
-                data-vi="👉 Chạm chỗ nào cũng mở được thiệp hết 👈"
-                data-en="👉 Tap anywhere on screen to open the card 👈">
-                👉 Chạm chỗ nào cũng mở được thiệp hết 👈
-            </div>
+        <!-- Click anywhere indicator -->
+        <div class="tap-reveal-hint animate-pulse text-sm text-gray-500 font-medium"
+            data-vi="👉 Chạm chỗ nào cũng mở được thiệp hết 👈" data-en="👉 Tap anywhere on screen to open the card 👈">
+            👉 Chạm chỗ nào cũng mở được thiệp hết 👈
         </div>
     </section>
 
@@ -655,7 +656,7 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="script.js?v=1.0.8"></script>
+    <script src="script.js?v=1.0.14"></script>
 </body>
 
 </html>

@@ -241,7 +241,7 @@ section {
 
 .hero-bottom-text {
     position: absolute;
-    top: calc(45% + 65px);
+    top: calc(52% + 50px);
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
@@ -249,7 +249,7 @@ section {
     flex-direction: column;
     align-items: center;
     z-index: 10;
-    gap: 1px;
+    gap: 16px;
 }
 
 .hero-date {
@@ -266,7 +266,7 @@ section {
 }
 
 .hero-location {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     color: #1a1a1a;
 }
 
@@ -275,7 +275,7 @@ section {
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     margin-top: 10px;
     color: #1a1a1a;
 }
@@ -305,6 +305,16 @@ section {
     font-weight: 600;
     letter-spacing: 1px;
     color: #1a1a1a;
+}
+
+.tap-reveal-hint {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    text-align: center;
+    white-space: nowrap;
 }
 
 
@@ -506,6 +516,7 @@ section {
 }
 
 .scrap-hand {
+    display: none;
     top: 50%;
     right: 1%;
     width: 250px;
@@ -533,6 +544,7 @@ section {
 }
 
 .scrap-speaker2 {
+    display: none;
     bottom: -15%;
     left: -12%;
     width: 360px;
@@ -556,8 +568,18 @@ body.content-revealed .scrap-speaker2 {
     }
 
     .hero-bottom-text {
-        top: calc(38% + 50px);
-        gap: 0;
+        top: calc(52% + 20px);
+        gap: 10px;
+    }
+
+    .hero-bottom-text .my-6 {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .tap-reveal-hint {
+        font-size: 0.8rem;
+        bottom: 16px;
     }
 
     .hero-date {
@@ -1753,8 +1775,8 @@ body.content-revealed .scrap-speaker2 {
     }
 
     .hero-bottom-text {
-        top: calc(36% + 30px) !important;
-        gap: 0px !important;
+        top: calc(48% + 10px) !important;
+        gap: 8px !important;
     }
 
     .hero-date {
@@ -1762,8 +1784,7 @@ body.content-revealed .scrap-speaker2 {
         font-size: 1.1rem !important;
     }
 
-    .hero-time,
-    .hero-location {
+    .hero-time {
         font-size: 1.1rem !important;
     }
 
@@ -1788,6 +1809,7 @@ body.content-revealed .scrap-speaker2 {
         font-size: 0.8rem !important;
     }
 
+    .hero-location,
     .hero-invite {
         margin-top: 4px !important;
         font-size: 0.95rem !important;
@@ -1798,7 +1820,7 @@ body.content-revealed .scrap-speaker2 {
     }
 
     .tap-reveal-hint {
-        margin-top: 0.5rem !important;
         font-size: 0.8rem !important;
+        bottom: 12px !important;
     }
 }
